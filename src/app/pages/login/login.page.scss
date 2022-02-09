@@ -1,0 +1,49 @@
+#principal
+{
+  text-align: center;
+}
+
+#principal2
+{
+  text-align: center;
+}
+
+#container {
+    text-align: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 68%;
+    transform: translateY(-50%);
+  }
+
+  ion-input{
+    border-radius: 10px !important;
+    padding-right: 30px;
+    font-size: 1.5em;
+    border: 1px solid #f1f1f1 !important;
+    --background: rgb(219,219,219) !important;
+    /* height: 10%; */
+    /* width: 41%; */
+    max-width: 110vw; // this is applying perfectly
+    max-height: 10vh;
+}
+
+button {
+    color: #FF334F;
+  
+    &.button-rounded {
+        display: block;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        border: 2px solid white;
+        border-radius: 50%;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        font-size: 10px;
+        font-weight: bold;
+    }
+  }
+  
