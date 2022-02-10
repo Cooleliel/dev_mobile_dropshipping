@@ -1,3 +1,49 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+
+
+  <!--Declaration du contenu du menu principal-->
+  <ion-menu side="start" menuId="main-menu" contentId="main-menu-content">
+    <ion-header>
+      <ion-toolbar color="danger" >
+        <ion-title>Start Menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-menu-toggle>
+          <ion-item>
+            <ion-icon></ion-icon>
+            <ion-label></ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item>
+            <ion-icon></ion-icon>
+            <ion-label></ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item>
+            <ion-icon></ion-icon>
+            <ion-label></ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item>
+            <ion-icon></ion-icon>
+            <ion-label></ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item>
+            <ion-icon></ion-icon>
+            <ion-label></ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+<!---->
+
+  <ion-router-outlet  id="main-menu-content"></ion-router-outlet>
 </ion-app>

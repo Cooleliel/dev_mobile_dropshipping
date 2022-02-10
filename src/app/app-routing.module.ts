@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'tabs',
     pathMatch: 'full'
   },
   {
@@ -18,6 +18,22 @@ const routes: Routes = [
   {
     path: 'inscription',
     loadChildren: () => import('./pages/inscription/inscription.module').then( m => m.InscriptionPageModule)
+  },
+  {
+    path: 'tabs',
+    loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule)
+  },
+  {
+    path: 'compte',
+    loadChildren: () => import('./pages/compte/compte.module').then( m => m.ComptePageModule)
+  },
+  {
+    path: 'categorie',
+    loadChildren: () => import('./pages/categorie/categorie.module').then( m => m.CategoriePageModule)
+  },
+  {
+    path: 'details',
+    loadChildren: () => import('./pages/details/details.module').then( m => m.DetailsPageModule)
   },
 ];
 
