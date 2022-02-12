@@ -1,0 +1,24 @@
+ion-label{
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+
+ p{
+  font-size: 17px;
+  color: #c8bcb9;
+ }
+
+ ion-icon{
+  font-size: 18px;
+ }
+}
+
+h2{
+ font-size: 17px;
+ text-align: left;
+ margin-top: 8px;
+}
+
+.liked{
+ color: var(--ion-color-danger);
+}
