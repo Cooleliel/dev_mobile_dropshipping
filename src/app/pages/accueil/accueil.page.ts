@@ -1,4 +1,5 @@
 import { Component, OnInit, } from '@angular/core';
+import { Router } from '@angular/router';
 import { Categorie } from 'src/app/models/categorie.model';
 import { Produit } from 'src/app/models/produit.model';
 import { CategorieService } from 'src/app/services/categorie.service';
@@ -22,12 +23,16 @@ export class AccueilPage  implements  OnInit{
     slidesOffsetBefore: 6
 
   } ;
-  constructor(  private categorieService: CategorieService, private produitService: ProduitService)  {
+  constructor(  private categorieService: CategorieService, private produitService: ProduitService  , private router: Router)  {
   }
   ngOnInit()  {
     this.categorieSlides = this.categorieService.getCategories();//attributs les donnees de la fonction getCategories qui returne un tableau d'objets de type categories
     this.caracteristiqueProduits = this.produitService.getCaracterisques();//attributs les donnees de la fonction getCaracterisques qui returne un tableau d'objets de type caracteristiqueProduits
 
     this.meilleurVenteProduits = this.produitService.getMeilleuresVentes();//attributs les donnees de la fonction getMeilleuresVentes qui returne un tableau d'objets de type meilleurVenteProduits
+  }
+  //declaration de la fonction qui recoit l'id du produit clique en parametre qui le redirige a la page details
+  goToDetailsPage(idItemProduit:  number)  {
+    this.router.navigate(['details' , idItemProduit])
   }
 }
