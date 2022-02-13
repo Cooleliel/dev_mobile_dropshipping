@@ -12,22 +12,27 @@ export class CategorieService{
 
   return[
    {
+    id: 1,
     title: 'Men' ,
     image: '../../assets/images/im1.jpg'
    },
    {
+    id: 2,
     title: 'Children' ,
     image: '../../assets/images/im1.jpg'
    },
    {
+    id: 3,
     title: 'women' ,
     image: '../../assets/images/im1.jpg'
    },
    {
+    id: 4,
     title: 'girl' ,
     image: '../../assets/images/im1.jpg'
    },
    {
+    id: 5,
     title: 'Eliel' ,
     image: '../../assets/images/im1.jpg'
    }
