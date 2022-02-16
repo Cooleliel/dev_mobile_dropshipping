@@ -1,26 +1,31 @@
 <ion-app>
   <ion-header [translucent]="true">
-    <ion-toolbar  color="danger"><!--Ajout d'une barre d'outils-->
+    <ion-toolbar color="danger">
+      <!--Ajout d'une barre d'outils-->
 
-      <ion-title  class="ion-text-center">Accueil</ion-title>
-      <ion-buttons  slot="start"><!--Mise en page d'un ensemble de buttons-->
-        <ion-menu-button  menu="main-menu"></ion-menu-button><!--Ajout d'un boutton menu-->
+      <ion-title class="ion-text-center">Accueil</ion-title>
+      <ion-buttons slot="start">
+        <!--Mise en page d'un ensemble de buttons-->
+        <ion-menu-button menu="main-menu"></ion-menu-button>
+        <!--Ajout d'un boutton menu-->
 
       </ion-buttons>
-      <ion-buttons  slot="end">
-        <ion-button><!--Ajout d'un button-->
+      <ion-buttons slot="end">
+        <ion-button routerLink="/panier"><!--Ajout d'un button-->
 
-          <ion-icon slot="icon-only"  name="cart-sharp"></ion-icon><!--Ajout d'une icone de panier-->
+          <ion-icon slot="icon-only" name="cart-sharp"></ion-icon>
+          <!--Ajout d'une icone de panier-->
         </ion-button>
       </ion-buttons>
 
     </ion-toolbar>
-    <ion-toolbar  id="search-bar">
-      <ion-searchbar  placeholder="Produits / Vendeurs .... "></ion-searchbar><!--Ajout d'une barre de recherche-->
-      
+    <ion-toolbar id="search-bar">
+      <ion-searchbar placeholder="Produits / Vendeurs .... "></ion-searchbar>
+      <!--Ajout d'une barre de recherche-->
+
     </ion-toolbar>
   </ion-header>
-  <ion-content  [fullscreen]="true">
+  <ion-content [fullscreen]="true">
     <!--Section categories-->
     <app-accueil-slide-header titre="Categories"  (click)="redirigerVersPageCategorie()"></app-accueil-slide-header><!--Appel de la vue app-accueil-slide-header(html) qui est un composant et qui recoit une chaine de caracteres--->
 
@@ -29,7 +34,7 @@
         <app-categorie-card [categorieCard]="categorieSlide"  (click)="redirigerVersPageDetails(categorieSlide.id)"></app-categorie-card><!--Appel de la vue app-categorie-card(html) qui est un composant et qui recoit la variable categorieSlide--->
         <!--appel de la fonction goToDetailsPage qui envoye des donnees lorssqu'on fait un clic-->
 
-        
+
       </ion-slide>
     </ion-slides>
     <!--Section produits-->

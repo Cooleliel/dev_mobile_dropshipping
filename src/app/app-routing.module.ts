@@ -39,6 +39,15 @@ const routes: Routes = [
     path: 'produit',
     loadChildren: () => import('./pages/produit/produit.module').then( m => m.ProduitPageModule)
   },
+  {
+
+    path: 'panier',
+    loadChildren: () => import('./pages/panier/panier.module').then( m => m.PanierPageModule)
+  },
+  {
+    path: 'details',
+    loadChildren: () => import('./pages/details/details.module').then( m => m.DetailsPageModule)
+  },
 ];
 
 @NgModule({
