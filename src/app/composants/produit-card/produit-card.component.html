@@ -1,9 +1,9 @@
-<ion-card><!--Ajout d'une carte-->
+<ion-card (click)="getProduitById(produitCard.id)"><!--Ajout d'une carte--><!--appel de la fonction getProduitById() qui envoye des donnees lorsqu'on fait un clic-->
   <img  [src]="produitCard.imageUrl"><!--Ajout d'une image grace a la valeur d'attribut de l'objet produitCard-->
   <ion-card-content>
 
     <ion-label>
-      <p>{{ produitCard.price | currency }}</p><!--Affiche la valeur d'attribut de l'objet produitCard-->
+      <p  id="produitPrice">{{ produitCard.price | currency }}</p><!--Affiche la valeur d'attribut de l'objet produitCard-->
       <ion-icon [color]="produitCard.liked ? 'danger' : ''" [name]="produitCard.liked ? 'heart' : 'heart-outline'"></ion-icon><!--Affiche l'icone favori en verifiant si elle a ete attribue-->
     </ion-label>
     <h2>{{ produitCard.name | titlecase }}  </h2>

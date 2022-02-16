@@ -1,7 +1,9 @@
 //Mise en page des proprietes css sur la barre de recherche
 #search-bar{
+ border: 1px red outset;
  padding-left: 10px;
  padding-right: 10px;
+ padding-top: 10px;
 
  ion-searchbar{
   --border-radius: 50px;
@@ -11,5 +13,4 @@
   padding-top: 10px;
   padding-bottom: 10px ;
  }
-
 }

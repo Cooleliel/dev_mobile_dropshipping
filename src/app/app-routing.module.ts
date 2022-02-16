@@ -32,10 +32,11 @@ const routes: Routes = [
     loadChildren: () => import('./pages/categorie/categorie.module').then( m => m.CategoriePageModule)
   },
   {
-    path: 'details',
+    path: 'details/:id',
     loadChildren: () => import('./pages/details/details.module').then( m => m.DetailsPageModule)
   },
   {
+<<<<<<< HEAD
     path: 'panier',
     loadChildren: () => import('./pages/panier/panier.module').then( m => m.PanierPageModule)
   },
@@ -43,6 +44,12 @@ const routes: Routes = [
     path: 'details',
     loadChildren: () => import('./pages/details/details.module').then( m => m.DetailsPageModule)
   },
+=======
+    path: 'ajout',
+    loadChildren: () => import('./ajout/ajout.module').then( m => m.AjoutPageModule)
+  },
+
+>>>>>>> e773d04e5aa9a892bad451c0248fe14d5714b21d
 ];
 
 @NgModule({

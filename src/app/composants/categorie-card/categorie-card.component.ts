@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Categorie } from 'src/app/models/categorie.model';
 
 @Component({
@@ -8,5 +8,7 @@ import { Categorie } from 'src/app/models/categorie.model';
 })
 export class CategorieCardComponent  {
 @Input()  categorieCard:  Categorie;//declaration d'objet de type Categorie
+@Output() clicked = new EventEmitter();////declaration de variable emettant un evenement en sortie(transmet des donnees) 
+
 }
 
