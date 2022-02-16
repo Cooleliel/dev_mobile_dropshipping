@@ -2,9 +2,9 @@
 
 export interface Produit{
  id: number ;
- name: string ;
+ nom: string ;
 
- price: number;
+ prix: number;
  imageUrl: string ;
  liked: boolean;
 }

@@ -11,7 +11,7 @@ export class ProduitCardComponent {
   @Output() clicked = new EventEmitter();//declaration de variable emettant un evenement en sortie(transmet des donnees a son composant parent) 
 
   //la fonction getProduitById() utilise la variable de soirte clicked pour declencher un evenement avec la valeur idProduit
-  getProduitById(idProduit: any)  {
+  obtenirProduitParId(idProduit: number)  {
     this.clicked.emit(idProduit)  ;
   }
 }

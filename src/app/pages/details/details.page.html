@@ -1,9 +1,38 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>details</ion-title>
+  <ion-toolbar  color="danger">
+    <ion-buttons  slot="start">
+
+      <ion-back-button  defaultHref="/accueil"></ion-back-button>
+    </ion-buttons>
+    <ion-title  class="ion-text-center">Details</ion-title>
+
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
+<!--Details du produit-->
 
+<ion-card>
+  <div class="image">
+    <img  [src]="produit.imageUrl">
+  </div>
+
+  <ion-card-header>
+    <ion-card-title>  {{  produit.name  }}  </ion-card-title>
+    <ion-card-subtitle>  <sup>xof</sup> {{  produit.price |  number:'1.2'}}  </ion-card-subtitle>
+  
+  </ion-card-header>
+  <ion-card-content>
+    
+    <div class="rates">
+      <app-badge  icon="time" text="30m"></app-badge>
+   
+      <app-badge  icon="star-outline" text="4.5"></app-badge>
+    </div>
+    <div class="about">
+      <h1>Description</h1>
+      <p>fhgfjklsgysljdltrdmljxfhglkjtmmmmylurijxxxxxxxxxxx</p>
+      <app-button (click)="ajouterArticleAuPanier()">Ajouter au panier</app-button>
+    </div>
+ </ion-card-content>
+</ion-card>
 </ion-content>

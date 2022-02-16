@@ -6,5 +6,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./accueil-slide-header.component.scss'],
 })
 export class AccueilSlideHeaderComponent  {
-  @Input()  title:  string  ;
+  @Input()  titre:  string  ;
 }

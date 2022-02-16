@@ -9,40 +9,40 @@ import { Produit } from "../models/produit.model";
 export class ProduitService {
  //Declarations de la fonction getProduits qui permet d'avoir les produits  sous forme de tableau
 
- getProduitS() : Produit[] {
+ obtenirProduits() : Produit[] {
   return [
    {
     id: 1,
-    name: 'Fasion Jeans',
-    price: 12,
+    nom: 'Fasion Jeans',
+    prix: 12,
     imageUrl: '../../assets/images/im1.jpg',
     liked: true,
    },
    {
     id: 2,
-    name: 'Fasion Jeans',
-    price: 12,
+    nom: 'Fasion Jeans',
+    prix: 12,
     imageUrl: '../../assets/images/im1.jpg',
     liked: false,
    },
    {
     id: 3,
-    name: 'Fasion Jeans',
-    price: 12,
+    nom: 'Fasion Jeans',
+    prix: 12,
     imageUrl: '../../assets/images/im1.jpg',
     liked: false,
    },
    {
     id: 4,
-    name: 'Fasion Jeans',
-    price: 12,
+    nom: 'Fasion Jeans',
+    prix: 12,
     imageUrl: '../../assets/images/im1.jpg',
     liked: true,
    },
    {
     id: 5,
-    name: 'Fasion Jeans',
-    price: 12,
+    nom: 'Fasion Jeans',
+    prix: 12,
     imageUrl: '../../assets/images/im1.jpg',
     liked: true,
    }
@@ -51,12 +51,17 @@ export class ProduitService {
  }
 
   //Declarations de la fonction getCaracteristique qui permet d'avoir les caracterisques des produits
-  getCaracterisques(): Produit[] {
-  return this.getProduitS().slice(1 , 3) ;
+  obtenirCaracterisques(): Produit[] {
+  return this.obtenirProduits().slice(1 , 3) ;
  }
 
  //Declarations de la fonction getMeilleursVentes qui permet d'avoir les produits les plus et meiux vendus
- getMeilleuresVentes(): Produit[] {
-  return this.getProduitS().slice(2 , 5) ;
+ obtenirMeilleuresVentes(): Produit[] {
+  return this.obtenirProduits().slice(2 , 5) ;
+ }
+
+ //Declarations de la fonction getProduitById qui permet d'avoir les produits par leur id
+ obtenirProduitParId(id: number): Produit{
+  return this.obtenirProduits().find((produit) => produit.id == id ) ;
  }
 }

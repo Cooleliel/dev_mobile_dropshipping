@@ -26,13 +26,27 @@ export class AccueilPage  implements  OnInit{
   constructor(  private categorieService: CategorieService, private produitService: ProduitService  , private router: Router)  {
   }
   ngOnInit()  {
-    this.categorieSlides = this.categorieService.getCategories();//attributs les donnees de la fonction getCategories qui returne un tableau d'objets de type categories
-    this.caracteristiqueProduits = this.produitService.getCaracterisques();//attributs les donnees de la fonction getCaracterisques qui returne un tableau d'objets de type caracteristiqueProduits
+    this.categorieSlides = this.categorieService.obtenirCategories();//attributs les donnees de la fonction getCategories qui returne un tableau d'objets de type categories
+    this.caracteristiqueProduits = this.produitService.obtenirCaracterisques();//attributs les donnees de la fonction getCaracterisques qui returne un tableau d'objets de type caracteristiqueProduits
 
-    this.meilleurVenteProduits = this.produitService.getMeilleuresVentes();//attributs les donnees de la fonction getMeilleuresVentes qui returne un tableau d'objets de type meilleurVenteProduits
+    this.meilleurVenteProduits = this.produitService.obtenirMeilleuresVentes();//attributs les donnees de la fonction getMeilleuresVentes qui returne un tableau d'objets de type meilleurVenteProduits
   }
   //declaration de la fonction qui recoit l'id du produit clique en parametre qui le redirige a la page details
-  goToDetailsPage(idItemProduit:  number)  {
+  redirigerVersPageDetails(idItemProduit:  number)  {
     this.router.navigate(['details' , idItemProduit])
+  }
+
+  //declaration de la fonction qui recoit l'id du produit clique en parametre qui le redirige a la page details
+  redirigerVersPageProduit()  {
+    this.router.navigate(['produit'])
+  }
+
+  //declaration de la fonction qui recoit l'id du produit clique en parametre qui le redirige a la page details
+  redirigerVersPageCategorie()  {
+    this.router.navigate(['categorie'])
+  }
+
+  redirigerVersPageCompte() {
+    this.router.navigate(['compte'])  ;
   }
 }

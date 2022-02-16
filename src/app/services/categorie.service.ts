@@ -8,34 +8,39 @@ import { Categorie } from '../models/categorie.model' ;
 })
 export class CategorieService{
  //Declarations de la fonction getCategories qui permet d'avoir les produits par categorie
- getCategories(): Categorie[] {
+ obtenirCategories(): Categorie[] {
 
   return[
    {
     id: 1,
-    title: 'Men' ,
+    titre: 'Men' ,
     image: '../../assets/images/im1.jpg'
    },
    {
     id: 2,
-    title: 'Children' ,
+    titre: 'Children' ,
     image: '../../assets/images/im1.jpg'
    },
    {
     id: 3,
-    title: 'women' ,
+    titre: 'women' ,
     image: '../../assets/images/im1.jpg'
    },
    {
     id: 4,
-    title: 'girl' ,
+    titre: 'girl' ,
     image: '../../assets/images/im1.jpg'
    },
    {
     id: 5,
-    title: 'Eliel' ,
+    titre: 'Eliel' ,
     image: '../../assets/images/im1.jpg'
    }
   ] ;
+ }
+
+ //Declarations de la fonction getProduitById qui permet d'avoir les produits par leur id
+ obtenirCategorieParId(id: number): Categorie{
+  return this.obtenirCategories().find((categorie) => categorie.id == id ) ;
  }
 }

@@ -37,11 +37,11 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'message',
+        path: 'compte',
         children: [
           {
             path: '',
-            loadChildren: () => import('../pages/message/message.module').then( m => m.MessagePageModule)
+            loadChildren: () => import('../pages/compte/compte.module').then( m => m.ComptePageModule)
           }
         ]
       },

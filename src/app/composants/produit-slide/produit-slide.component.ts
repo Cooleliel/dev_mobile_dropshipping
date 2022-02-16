@@ -9,11 +9,11 @@ import { Produit } from 'src/app/models/produit.model';
 })
 export class ProduitSlideComponent {
   @Input()  produitSlides:  Produit[];//declaration de tableau d'objets de type Produit
-  @Output() shared = new EventEmitter();//declaration de variable emettant un evenement en sortie(transmet des donnees a son composant parent) 
+  @Output() envoi = new EventEmitter();//declaration de variable emettant un evenement en sortie(transmet des donnees a son composant parent) 
 
   //la fonction sharedProduitById() utilise la variable de soirte shared pour declencher un evenement avec la valeur idProduit
-  sharedProduitId(idProduit: any)  {
-    this.shared.emit(idProduit)  ;
+  envoyerProduitId(idProduit: number)  {
+    this.envoi.emit(idProduit)  ;
   }
   produitsSlideOpts = {
     initialSlide: 0, 

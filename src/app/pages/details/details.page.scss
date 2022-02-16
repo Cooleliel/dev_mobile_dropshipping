@@ -1,0 +1,38 @@
+
+
+ion-card-header{
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+}
+ion-card-title{
+ font-weight: 700;
+ font-size: 1.5rem;
+}
+ion-card-subtitle{
+ color: #f04141;
+ font-weight: 700;
+ font-size: 1.5rem;
+
+ sup{
+  font-size: 1.2rem;
+  margin-right: -0.5rem;
+ }
+}
+.rates{
+ display: flex;
+ align-items: center;
+ margin-bottom: 0.3rem;
+}
+.about{
+ margin-top: 25px;
+ h1{
+  font-weight: 600;
+  color: black;
+ }
+ p{
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #b9b9b9;
+ }
+}
