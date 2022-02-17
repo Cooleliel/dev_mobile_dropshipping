@@ -1,0 +1,7 @@
+<ion-grid fixed>
+  <ion-row>
+    <ion-col  size="6"  *ngFor="let categorieGrid of  categorieGrids">
+      <app-categorie-card [categorieCard]="categorieGrid"  (clicCatC)="envoyerCategorieIdG($event)"></app-categorie-card><!--Appel de la vue app-produit-card(html) qui est un composant et qui recoit la variable produitSlide--->
+    </ion-col>
+  </ion-row>
+</ion-grid>
