@@ -11,8 +11,8 @@ import { ProduitService } from 'src/app/services/produit.service';
   styleUrls: ['./accueil.page.scss'],
 })
 export class AccueilPage  implements  OnInit{
-  categorieSlides: Categorie[] ;//declaration de tableau d'objets de type categories
-  caracteristiqueProduits: Produit[];//declaration de tableau d'objets de type caracteristiqueProduits
+  categorieSlides: Categorie[] =  [];//declaration de tableau d'objets de type categories
+  caracteristiqueProduits: Produit[]  = [];//declaration de tableau d'objets de type caracteristiqueProduits
 
   meilleurVenteProduits: Produit[];//declaration de tableau d'objets de type meilleurVenteProduits
   slideOpts = {
