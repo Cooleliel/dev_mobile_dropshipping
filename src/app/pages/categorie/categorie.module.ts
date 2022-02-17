@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { CategoriePageRoutingModule } from './categorie-routing.module';
 
 import { CategoriePage } from './categorie.page';
+import { CategorieGridModule } from 'src/app/composants/categorie-grid/categorie-grid.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    CategoriePageRoutingModule
+    CategoriePageRoutingModule,
+    CategorieGridModule
   ],
   declarations: [CategoriePage]
 })

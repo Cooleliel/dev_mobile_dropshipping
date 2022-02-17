@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar   color="danger">
     <ion-buttons slot="start">
 
       <ion-back-button    defaultHref="/accueil"></ion-back-button>
@@ -10,7 +10,7 @@
 
       </ion-button>
     </ion-buttons>
-    <ion-title>Categorie</ion-title>
+    <ion-title  class="ion-text-center">Categories</ion-title>
 
   </ion-toolbar>
   <ion-toolbar  id="search-bar">
@@ -19,5 +19,6 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-
+  <app-categorie-grid   [categorieGrids]="tousCategories" (envIdCatG)="redirigerVersPageDetails($event)"></app-categorie-grid>
 </ion-content>
+
