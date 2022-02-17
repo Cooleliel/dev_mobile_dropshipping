@@ -8,11 +8,11 @@ import { Produit } from 'src/app/models/produit.model';
 })
 export class ProduitCardComponent {
   @Input()  produitCard:  Produit;//declaration d'objet de type Produit en entree(recoit des donnees de son composant parent)
-  @Output() clicked = new EventEmitter();//declaration de variable emettant un evenement en sortie(transmet des donnees a son composant parent) 
+  @Output() clicProdC = new EventEmitter();//declaration de variable emettant un evenement en sortie(transmet des donnees a son composant parent) 
 
   //la fonction getProduitById() utilise la variable de soirte clicked pour declencher un evenement avec la valeur idProduit
-  obtenirProduitParId(idProduit: number)  {
-    this.clicked.emit(idProduit)  ;
+  obtenirProduitParIdC(idProduit: number)  {
+    this.clicProdC.emit(idProduit)  ;
   }
 }
 
