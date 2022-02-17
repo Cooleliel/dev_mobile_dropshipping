@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Produit } from 'src/app/models/produit.model';
+import { ProduitService } from 'src/app/services/produit.service';
 
 @Component({
   selector: 'app-produit',
@@ -6,10 +9,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./produit.page.scss'],
 })
 export class ProduitPage implements OnInit {
+  tousProduits: Produit[] = []  ;
 
-  constructor() { }
+  constructor(  private produitService: ProduitService  , private router: Router  ) { }
 
   ngOnInit() {
+    this.tousProduits = this.produitService.obtenirProduits() ;
+  }
+  redirigerVersPageDetails(idItemProduit:  number)  {
+    this.router.navigate(['details' , idItemProduit])
   }
 
 }
