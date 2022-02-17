@@ -8,12 +8,12 @@ import { Produit } from 'src/app/models/produit.model';
   styleUrls: ['./produit-slide.component.scss'],
 })
 export class ProduitSlideComponent {
-  @Input()  produitSlides:  Produit[];//declaration de tableau d'objets de type Produit
-  @Output() envoi = new EventEmitter();//declaration de variable emettant un evenement en sortie(transmet des donnees a son composant parent) 
+  @Input()  produitSlides:  Produit[] = [];//declaration de tableau d'objets de type Produit
+  @Output() envIdProdS = new EventEmitter();//declaration de variable emettant un evenement en sortie(transmet des donnees a son composant parent) 
 
   //la fonction sharedProduitById() utilise la variable de soirte shared pour declencher un evenement avec la valeur idProduit
-  envoyerProduitId(idProduit: number)  {
-    this.envoi.emit(idProduit)  ;
+  envoyerProduitIdS(idProduit: number)  {
+    this.envIdProdS.emit(idProduit)  ;
   }
   produitsSlideOpts = {
     initialSlide: 0, 
