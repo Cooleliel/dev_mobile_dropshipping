@@ -1,0 +1,77 @@
+<div class="ion-page" id="main-content">
+  <ion-header translucent>
+    <ion-toolbar  color="danger">
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/"></ion-back-button>
+      </ion-buttons>
+      <ion-title>Ajout d'un produit</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content [fullscreen]="true" class="ion-padding" background-image="assets/images/test1.png">
+    <br>
+
+
+    <ion-button (click)="addPhoto()" color="tertiary" expand="block">
+      <ion-icon name="image" slot="start"></ion-icon>
+      Ouvrir la bibliothèque
+    </ion-button>
+  
+    <ion-button (click)="addPhoto('camera')" color="secondary" expand="block">
+      <ion-icon name="camera" slot="start"></ion-icon>
+      Prendre une photo
+    </ion-button>
+  
+    <div class="flex">
+      <div class="img-box">
+        <img [src]="image">
+      </div>
+    </div>
+
+
+    <form class="form" [formGroup]="userForm" (ngSubmit)="creation(userForm.value)">
+
+    <ion-item>
+      <ion-input type = "text" formControlName="id_user" value="{{user_id}}">
+      </ion-input>
+   </ion-item>
+  
+        <ion-item>
+          <ion-input type = "text" placeholder = 
+              "Categorie" formControlName="categorie" required>
+          </ion-input>
+       </ion-item>
+
+       <br>
+  
+       <ion-item >
+         <ion-input type = "text" placeholder = 
+             "Description" formControlName="description" required>
+         </ion-input>
+      </ion-item>
+
+      <br>
+  
+      <ion-item >
+        <ion-input type = "text" placeholder = 
+            "Prix" formControlName="prix" required>
+        </ion-input>
+     </ion-item>
+
+    <br>
+
+    <ion-item>
+      <ion-input type = "text" placeholder = 
+          "Stock" formControlName="stock" required>
+      </ion-input>
+   </ion-item>
+
+   <br>
+
+     <br><br>
+
+     <ion-button type="submit" class="btn" size="medium" color="danger" expand="block" shape="round" [disabled]="!userForm.valid" >Ajouter</ion-button>
+
+   </form>
+
+  </ion-content>
+</div>

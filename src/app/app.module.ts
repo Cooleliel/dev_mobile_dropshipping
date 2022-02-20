@@ -4,24 +4,21 @@ import { RouteReuseStrategy } from '@angular/router';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AngularFireModule} from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import{ IonicStorageModule } from '@ionic/storage';
+import { Camera } from '@ionic-native/camera/ngx';
 
 const firebaseConfig = {
 
-  apiKey: 'AIzaSyBXSCro-iStlQDjT3csB2v185X50SmQAy4',
-
-  authDomain: 'dropshopping-29d45.firebaseapp.com',
-
-  projectId: 'dropshopping-29d45',
-
-  storageBucket: 'dropshopping-29d45.appspot.com',
-
-  messagingSenderId: '166194366272',
-
-  appId: '1:166194366272:web:54064490acd8ef22ef1ca5',
-
-  measurementId: 'G-83T8B9TEWW'
+  apiKey: 'AIzaSyAtpdDGQuTvxpFSwe2HG3PZXAaFwyTUWCQ',
+  authDomain: 'monappliecole.firebaseapp.com',
+  projectId: 'monappliecole',
+  storageBucket: 'monappliecole.appspot.com',
+  messagingSenderId: '904714985018',
+  appId: '1:904714985018:web:83bd802502277e2d035f03',
+  measurementId: 'G-H7YFFGP3YW'
 
 };
 
@@ -29,8 +26,8 @@ const firebaseConfig = {
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,AngularFireModule.initializeApp(firebaseConfig)],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  imports: [BrowserModule, IonicModule.forRoot(),IonicStorageModule.forRoot(), AppRoutingModule,AngularFireModule.initializeApp(firebaseConfig), AngularFireAuthModule],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },Storage,Camera],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

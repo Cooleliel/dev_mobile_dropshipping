@@ -11,40 +11,84 @@
 
     <br>
   
+    <form class="form" [formGroup]="userForm" (ngSubmit)="signUp(userForm.value)">
+
         <ion-item lines="none" >
           <ion-input type = "text" placeholder = 
-              "Nom" required>
+              "Nom" formControlName="nom" required>
           </ion-input>
        </ion-item>
+
+       <ng-container *ngFor="let error of error_msg.nom">
+        <div *ngIf="userForm.get('nom').hasError(error.type) && (userForm.get('nom').dirty || userForm.get('nom').touched)">
+          {{ error.message }}
+        </div>
+      </ng-container>
+
+       <br>
+
+       <ion-item lines="none" >
+        <ion-input type = "text" placeholder = 
+            "Prenom" formControlName="prenom" required>
+        </ion-input>
+     </ion-item>
+
+     <ng-container *ngFor="let error of error_msg.prenom">
+      <div *ngIf="userForm.get('prenom').hasError(error.type) && (userForm.get('prenom').dirty || userForm.get('prenom').touched)">
+        {{ error.message }}
+      </div>
+    </ng-container>
 
        <br>
   
        <ion-item lines="none" >
          <ion-input type = "text" placeholder = 
-             "Email" required>
+             "numero" formControlName="numero"  required>
          </ion-input>
       </ion-item>
+
+      <ng-container *ngFor="let error of error_msg.numero">
+        <div *ngIf="userForm.get('numero').hasError(error.type) && (userForm.get('numero').dirty || userForm.get('numero').touched)">
+          {{ error.message }}
+        </div>
+      </ng-container>
 
       <br>
   
       <ion-item lines="none" >
-        <ion-input type = "text" placeholder = 
-            "Numero" required>
+        <ion-input type = "email" placeholder = 
+            "Email" formControlName="email" required>
         </ion-input>
      </ion-item>
+
+     <ng-container *ngFor="let error of error_msg.email">
+      <div *ngIf="userForm.get('email').hasError(error.type) && (userForm.get('email').dirty || userForm.get('email').touched)">
+        {{ error.message }}
+      </div>
+    </ng-container>
 
 
     <br>
 
        <ion-item lines="none" >
         <ion-input type = "password" placeholder = 
-            "Mot de passe" required>
+            "Mot de passe" formControlName="password" required>
         </ion-input>
      </ion-item>
 
+     <ng-container *ngFor="let error of error_msg.password">
+      <div *ngIf="userForm.get('password').hasError(error.type) && (userForm.get('password').dirty || userForm.get('password').touched)">
+        {{ error.message }}
+      </div>
+    </ng-container>
+
      <br><br>
 
-    <ion-button class="btn" size="medium" color="danger" expand="block" shape="round" >Valider inscription</ion-button>
+    <ion-button type="submit" class="btn" size="medium" color="danger" expand="block" shape="round" [disabled]="!userForm.valid" >Valider inscription</ion-button>
+
+    <label class="ion-text-center" color="danger">{{errorMsg}}</label>
+    <label class="ion-text-center" color="success">{{successMsg}}</label>
+  </form>
 
 <div style="text-align: center">
   <ion-button color="bluelovers" style="background-color: rgb(4, 4, 88); border-Radius: 50%; color: white; width: 50px;"><ion-icon name="logo-facebook"></ion-icon></ion-button>
@@ -52,7 +96,7 @@
   <ion-button color="bluelovers" style="background-color: rgb(23, 114, 5); border-Radius: 50%;  color: white; width: 50px;"><ion-icon name="logo-whatsapp"></ion-icon></ion-button>
   <ion-button color="bluelovers" style="background-color: #0000ff; border-Radius: 50%;  color: white; width: 50px;"><ion-icon name="logo-twitter"></ion-icon></ion-button>
   <br><br>
-  <p>Vous n'avez pas de compte? <a style="text-decoration: none; color: crimson;" href="">S'inscrire?</a></p>
+  <p>Vous avez deja un compte? <a style="text-decoration: none; color: crimson;" href="/login">Se connecter</a></p>
 </div>
 
   </ion-content>

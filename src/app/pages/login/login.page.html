@@ -11,27 +11,46 @@
     <ion-img style="margin-top: -45px;" src="assets/images/test7.png"></ion-img>
 
     <br>
-  
+
+    <form class="form" [formGroup]="userForm" (ngSubmit)="signIn(userForm.value)">
         <ion-item lines="none" >
           <ion-input type = "text" placeholder = 
-              "Email" required>
+              "Email" formControlName="email" required>
           </ion-input>
        </ion-item>
+
+       <ng-container *ngFor="let error of error_msg.email">
+        <div *ngIf="userForm.get('email').hasError(error.type) && (userForm.get('email').dirty || userForm.get('email').touched)">
+          {{ error.message }}
+        </div>
+      </ng-container>
 
     <br>
 
        <ion-item lines="none" >
         <ion-input type = "password" placeholder = 
-            "Mot de passe" required>
+            "Mot de passe" formControlName="password" required>
         </ion-input>
      </ion-item>
 
-     <br><br>
+     <ng-container *ngFor="let error of error_msg.password">
+      <div *ngIf="userForm.get('password').hasError(error.type) && (userForm.get('password').dirty || userForm.get('password').touched)">
+        {{ error.message }}
+      </div>
+  </ng-container>
+
+  <br><br>
+
+  <a style="color: darkgray; margin-left: 100px;">forgot password?</a><br><br>
+
+  <ion-button type="submit"  class="btn" size="medium" color="danger" expand="block" shape="round" [disabled]="!userForm.valid">Se connecter</ion-button>
+
+  <label class="ion-text-center" color="danger">{{errorMsg}}</label>
+  <label class="ion-text-center" color="success">{{successMsg}}</label>
+  
+</form>
 
 
-    <a style="color: darkgray; margin-left: 100px;">forgot password?</a><br><br>
-
-    <ion-button class="btn" size="medium" color="danger" expand="block" shape="round" >Se connecter</ion-button>
 
 <div style="text-align: center">
   <ion-button color="bluelovers" style="background-color: rgb(4, 4, 88); border-Radius: 50%; color: white; width: 50px;"><ion-icon name="logo-facebook"></ion-icon></ion-button>
@@ -39,7 +58,7 @@
   <ion-button color="bluelovers" style="background-color: rgb(23, 114, 5); border-Radius: 50%;  color: white; width: 50px;"><ion-icon name="logo-whatsapp"></ion-icon></ion-button>
   <ion-button color="bluelovers" style="background-color: #0000ff; border-Radius: 50%;  color: white; width: 50px;"><ion-icon name="logo-twitter"></ion-icon></ion-button>
   <br><br>
-  <p>Vous n'avez pas de compte? <a style="text-decoration: none; color: crimson;" href="">S'inscrire?</a></p>
+  <p>Vous n'avez pas de compte? <a style="text-decoration: none; color: crimson;" href="/inscription">S'inscrire?</a> <a style="text-decoration: none; color: crimson;" href="/tabs/accueil">Visiter</a></p>
 </div>
 
   </ion-content>

@@ -1,7 +1,8 @@
 {
   "name": "dropshipping_app",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {},
+    "cordova": {}
   },
   "type": "angular"
 }
