@@ -7,8 +7,12 @@ import { Categorie } from 'src/app/models/categorie.model';
   styleUrls: ['./categorie-card.component.scss'],
 })
 export class CategorieCardComponent  {
-@Input()  categorieCard:  Categorie;//declaration d'objet de type Categorie
-@Output() clicked = new EventEmitter();////declaration de variable emettant un evenement en sortie(transmet des donnees) 
+  @Input()  categorieCard:  Categorie;//declaration d'objet de type Categorie
+  @Output() clicCatC= new EventEmitter();//declaration de variable emettant un evenement en sortie(transmet des donnees a son composant parent) 
 
+  //la fonction getProduitById() utilise la variable de soirte clicked pour declencher un evenement avec la valeur idProduit
+  obtenirCategorieParIdC(idCategorie: number)  {
+    this.clicCatC.emit(idCategorie)  ;
+  }
 }
 

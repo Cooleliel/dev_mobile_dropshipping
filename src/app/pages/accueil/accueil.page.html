@@ -40,12 +40,12 @@
     </ion-slides>
     <!--Section produits-->
     <app-accueil-slide-header titre="Produits"  (click)="redirigerVersPageProduit()"></app-accueil-slide-header>
-    <app-produit-slide  [produitSlides]="caracteristiqueProduits" (envoi)="redirigerVersPageDetails($event)"></app-produit-slide><!--Appel de la vue app-produit-slide(html) qui est un composant et qui recoit la variable caracteristiqueProduits--->
+    <app-produit-slide  [produitSlides]="caracteristiqueProduits" (envIdProdS)="redirigerVersPageDetails($event)"></app-produit-slide><!--Appel de la vue app-produit-slide(html) qui est un composant et qui recoit la variable caracteristiqueProduits--->
      <!--appel de la fonction goToDetailsPage qui envoye des donnees lorssqu'on fait un clic-->
 
      <!--Section produits-->
      <app-accueil-slide-header titre="Les plus vendus"  (click)="redirigerVersPageProduit()"></app-accueil-slide-header>
-     <app-produit-slide  [produitSlides]="meilleurVenteProduits"  (envoi)="redirigerVersPageDetails($event)"></app-produit-slide>
+     <app-produit-slide  [produitSlides]="meilleurVenteProduits"  (envIdProdS)="redirigerVersPageDetails($event)"></app-produit-slide>
      <!--appel de la fonction goToDetailsPage qui envoye des donnees lorssqu'on fait un clic-->
 
   </ion-content>

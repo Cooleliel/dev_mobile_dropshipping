@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { ProduitPageRoutingModule } from './produit-routing.module';
 
 import { ProduitPage } from './produit.page';
+import { ProduitGridModule } from 'src/app/composants/produit-grid/produit-grid.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ProduitPageRoutingModule
+    ProduitPageRoutingModule,
+    ProduitGridModule
   ],
   declarations: [ProduitPage]
 })
