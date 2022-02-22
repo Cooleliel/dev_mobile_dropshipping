@@ -21,77 +21,19 @@
 
 <ion-content  [fullscreen]>
 
-  <ion-grid>
+  <ion-grid >
 
-    <ion-row>
-      <ion-col>
+    <ion-row size="10" >
+      <ion-col size="6" *ngFor="let article of articles | async">
         <div>
           <ion-card>
-            <img src="assets/images/im3.jpg" />
-            <ion-card-header>
-              <ion-card-subtitle style="color: red;" >5000 FCFA</ion-card-subtitle>
-              <strong><h6 style="color: black;">Womens Long Sweater</h6> </strong>
-            </ion-card-header>
-          </ion-card>
-        </div>
-      </ion-col>
-      <ion-col>
-        <div>
-          <ion-card>
-            <img src="assets/images/im1.jpg" />
-            <ion-card-header>
-              <ion-card-subtitle style="color: red;" >5000 FCFA</ion-card-subtitle>
-              <strong><h6 style="color: black;">Womens Long Sweater</h6> </strong>
-            </ion-card-header>
-          </ion-card>
-        </div>
-      </ion-col>
-    </ion-row>
 
-    <ion-row>
-      <ion-col>
-        <div>
-          <ion-card>
-            <img src="assets/images/im3.jpg" />
+            <img [src]="article.image" alt="">
             <ion-card-header>
-              <ion-card-subtitle style="color: red;" >5000 FCFA</ion-card-subtitle>
-              <strong><h6 style="color: black;">Womens Long Sweater</h6> </strong>
-            </ion-card-header>
-          </ion-card>
-        </div>
-      </ion-col>
-      <ion-col>
-        <div>
-          <ion-card>
-            <img src="assets/images/im1.jpg" />
-            <ion-card-header>
-              <ion-card-subtitle style="color: red;" >5000 FCFA</ion-card-subtitle>
-              <strong><h6 style="color: black;">Womens Long Sweater</h6> </strong>
-            </ion-card-header>
-          </ion-card>
-        </div>
-      </ion-col>
-    </ion-row>
 
-    <ion-row>
-      <ion-col>
-        <div>
-          <ion-card>
-            <img src="assets/images/im3.jpg" />
-            <ion-card-header>
-              <ion-card-subtitle style="color: red;" >5000 FCFA</ion-card-subtitle>
-              <strong><h6 style="color: black;">Womens Long Sweater</h6> </strong>
-            </ion-card-header>
-          </ion-card>
-        </div>
-      </ion-col>
-      <ion-col>
-        <div>
-          <ion-card>
-            <img src="assets/images/im1.jpg" />
-            <ion-card-header>
-              <ion-card-subtitle style="color: red;" >5000 FCFA</ion-card-subtitle>
-              <strong><h6 style="color: black;">Womens Long Sweater</h6> </strong>
+              <ion-card-subtitle style="color: red;" >{{ article.prix }} FCFA</ion-card-subtitle>
+              <strong><h6 style="color: black;">{{ article.categorie }}</h6> </strong>
+
             </ion-card-header>
           </ion-card>
         </div>

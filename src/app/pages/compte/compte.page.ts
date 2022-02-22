@@ -34,6 +34,8 @@ export class ComptePage implements OnInit {
         this.storage.get('user_second_name').then((value)=> {this.user_prenom=value; });
         this.storage.get('user_id').then((value)=> {this.user_id=value; });
         this.storage.get('user_number').then((value)=> {this.user_number=value; });
+
+        console.log(this.user_id);
     });
       }
       else

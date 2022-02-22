@@ -37,19 +37,20 @@ export class AuthService {
       })
   }
 
-  createArticle(value){
+  createArticle(value,url){
 
-    this.angularFireAuth.createArticles(value.id_user, value.categorie, value.description, value.stock, value.prix)
+    this.angularFireAuth.createArticles(value.id_user, value.categorie, value.description, value.stock, value.prix, url)
           .then(
             res => {
-            console.log(value.id_user, value.categorie, value.description, value.stock, value.prix);
+            console.log(value.id_user, value.categorie, value.description, value.stock, value.prix, url);
 
              this.firestore.collection('articles').add({
                   user_id: value.id_user,
                   categorie: value.categorie,
                   description: value.description,
                   stock: value.stock,
-                  prix: value.prix
+                  prix: value.prix,
+                  image: url
       });
 
     })
@@ -115,6 +116,14 @@ export class AuthService {
   userDetails() {
     return this.angularFireAuth.user
   }
+
+  public getsession(){
+      return this.storage.get('user_id').then((val) =>{
+        console.log(val);
+        return val;
+      });
+  }
+
 
 
 }

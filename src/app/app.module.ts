@@ -5,6 +5,7 @@ import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AngularFireModule} from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import{ IonicStorageModule } from '@ionic/storage';
@@ -15,7 +16,7 @@ const firebaseConfig = {
   apiKey: 'AIzaSyAtpdDGQuTvxpFSwe2HG3PZXAaFwyTUWCQ',
   authDomain: 'monappliecole.firebaseapp.com',
   projectId: 'monappliecole',
-  storageBucket: 'monappliecole.appspot.com',
+  storageBucket: "monappliecole.appspot.com",
   messagingSenderId: '904714985018',
   appId: '1:904714985018:web:83bd802502277e2d035f03',
   measurementId: 'G-H7YFFGP3YW'
@@ -26,7 +27,7 @@ const firebaseConfig = {
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(),IonicStorageModule.forRoot(), AppRoutingModule,AngularFireModule.initializeApp(firebaseConfig), AngularFireAuthModule],
+  imports: [BrowserModule, IonicModule.forRoot(),IonicStorageModule.forRoot(), AppRoutingModule,AngularFireModule.initializeApp(firebaseConfig), AngularFireAuthModule, AngularFireStorageModule,],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },Storage,Camera],
   bootstrap: [AppComponent],
 })

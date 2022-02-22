@@ -10,8 +10,16 @@
   <ion-content [fullscreen]="true" class="ion-padding" background-image="assets/images/test1.png">
     <br>
 
+    <ion-refresher slot="fixed" disabled="false" (ionRefresh)="doRefresh($event)">  
+      <ion-refresher-content  
+      pullingIcon="arrow-dropdown"  
+      pullingText="Pull to refresh"  
+      refreshingSpinner="circles"  
+      refreshingText="Refreshing..."></ion-refresher-content>  
+    </ion-refresher>  
 
-    <ion-button (click)="addPhoto()" color="tertiary" expand="block">
+
+    <ion-button (click)="addPhoto('library')" color="tertiary" expand="block">
       <ion-icon name="image" slot="start"></ion-icon>
       Ouvrir la bibliothèque
     </ion-button>
@@ -20,7 +28,8 @@
       <ion-icon name="camera" slot="start"></ion-icon>
       Prendre une photo
     </ion-button>
-  
+
+
     <div class="flex">
       <div class="img-box">
         <img [src]="image">
