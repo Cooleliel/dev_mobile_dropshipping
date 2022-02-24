@@ -11,6 +11,27 @@
     </ion-toolbar>
   </ion-header>
   <ion-content  [fullscreen]="true">
-    
+
+    <div *ngIf="myFlag != null;else elseCondition">
+    <h1>Nom: {{username}}</h1>
+    <h1>Email: {{user_email}}</h1>
+    <h1>Prenom: {{user_prenom}}</h1>
+    <h1>Numero: {{user_number}}</h1>
+
+    <ion-button routerLink='/mes-produits'>
+      Mes produits
+    </ion-button>
+
+    <ion-button color="danger" (click)="disconnect()">
+      Deconnexion
+    </ion-button>
+    </div>
+
+    <ng-template #elseCondition>
+      <h1>Oups vous n'etes pas authentifié</h1>
+      <ion-button color="success" routerLink='/login'>Se connecter</ion-button>
+      <ion-button routerLink='/inscription'>S'inscrire</ion-button>
+    </ng-template>     
+
   </ion-content>
 </ion-app>

@@ -4,6 +4,7 @@ import { Categorie } from 'src/app/models/categorie.model';
 import { Produit } from 'src/app/models/produit.model';
 import { CategorieService } from 'src/app/services/categorie.service';
 import { ProduitService } from 'src/app/services/produit.service';
+import{ Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-accueil',
@@ -11,8 +12,10 @@ import { ProduitService } from 'src/app/services/produit.service';
   styleUrls: ['./accueil.page.scss'],
 })
 export class AccueilPage  implements  OnInit{
-  categorieSlides: Categorie[] =  [];//declaration de tableau d'objets de type categories
-  caracteristiqueProduits: Produit[]  = [];//declaration de tableau d'objets de type caracteristiqueProduits
+
+  categorieSlides: Categorie[] ;//declaration de tableau d'objets de type categories
+  caracteristiqueProduits: Produit[];//declaration de tableau d'objets de type caracteristiqueProduits
+
 
   meilleurVenteProduits: Produit[];//declaration de tableau d'objets de type meilleurVenteProduits
   slideOpts = {
@@ -49,4 +52,5 @@ export class AccueilPage  implements  OnInit{
   redirigerVersPageCompte() {
     this.router.navigate(['compte'])  ;
   }
+
 }

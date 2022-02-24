@@ -3,7 +3,7 @@
     <ion-toolbar color="danger">
       <!--Ajout d'une barre d'outils-->
 
-      <ion-title class="ion-text-center">Accueil</ion-title>
+      <ion-title class="ion-text-center">Accueil{{username}}</ion-title>
       <ion-buttons slot="start">
         <!--Mise en page d'un ensemble de buttons-->
         <ion-menu-button menu="main-menu"></ion-menu-button>
@@ -46,5 +46,6 @@
      <app-accueil-slide-header titre="Les plus vendus"  (click)="redirigerVersPageProduit()"></app-accueil-slide-header>
      <app-produit-slide  [produitSlides]="meilleurVenteProduits"  (envIdProdS)="redirigerVersPageDetails($event)"></app-produit-slide>
      <!--appel de la fonction goToDetailsPage qui envoye des donnees lorssqu'on fait un clic-->
+
   </ion-content>
 </ion-app>
