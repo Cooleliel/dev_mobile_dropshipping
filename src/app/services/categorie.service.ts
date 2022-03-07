@@ -44,3 +44,4 @@ export class CategorieService{
   return this.obtenirCategories().find((categorie) => categorie.id == id ) ;
  }
 }
+

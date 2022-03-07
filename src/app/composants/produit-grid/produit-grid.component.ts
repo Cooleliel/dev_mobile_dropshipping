@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Articles } from 'src/app/models/Articles.model';
 import { Produit } from 'src/app/models/produit.model';
 
 @Component({
@@ -7,10 +8,10 @@ import { Produit } from 'src/app/models/produit.model';
   styleUrls: ['./produit-grid.component.scss'],
 })
 export class ProduitGridComponent {
-  @Input()  produitGrids:  Produit[]  = [];//declaration de tableau d'objets de type Produit
+  @Input()  produitGrids:  Articles[]  = [];//declaration de tableau d'objets de type Produit
   @Output() envIdProdG = new EventEmitter();//declaration de variable emettant un evenement en sortie(transmet des donnees a son composant parent) 
 
-  envoyerProduitIdG(idProduit: number)  {
+  envoyerIdProduitG(idProduit: string)  {
     this.envIdProdG.emit(idProduit)  ;
   }
 }
