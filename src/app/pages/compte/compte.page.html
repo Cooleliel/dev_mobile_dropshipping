@@ -1,30 +1,51 @@
 <ion-app>
-  <ion-header [translucent]="true">
-    <ion-toolbar  color="danger">
-
-      <ion-buttons  slot="start">
-        <ion-menu-button  menu="main-menu"></ion-menu-button>
-      </ion-buttons>
-
-      <ion-title  class="ion-text-center">Compte</ion-title>
-
-    </ion-toolbar>
-  </ion-header>
   <ion-content  [fullscreen]="true">
+<div *ngIf="myFlag != null;else elseCondition">
+    <div class="header-bg">
+      <h2> 
+        {{username}} {{user_prenom}}
+      </h2>
+      <div class="space">
+         <div class="following">
+            <ion-badge color="danger" mode="ios">42</ion-badge>
+            <p>Abonnés</p>
+         </div>
+         <div class="following">
+          <ion-badge color="danger" mode="ios">42</ion-badge>
+          <p>Abonnements</p>
+       </div>
+      </div>
+    </div>
 
-    <div *ngIf="myFlag != null;else elseCondition">
-    <h1>Nom: {{username}}</h1>
-    <h1>Email: {{user_email}}</h1>
-    <h1>Prenom: {{user_prenom}}</h1>
-    <h1>Numero: {{user_number}}</h1>
+    <div class="flex">
+      <div class="border-red">
+        <div class="border-white">
+          <div class="img-box">
+            <img src="assets/images/im6.jpg" alt="photo" width="150px" height="130px">
+          </div>
+        </div>
+      </div>
+    </div>
 
-    <ion-button routerLink='/mes-produits'>
-      Mes produits
-    </ion-button>
+      <ion-card>
+        <h3 style="text-align: center; font-weight: bold">
+          Email: {{user_email}}
+        </h3>
+        <h3 style="text-align: center; font-weight: bold">
+          Numero: {{user_number}}
+        </h3>
 
-    <ion-button color="danger" (click)="disconnect()">
-      Deconnexion
-    </ion-button>
+        <ion-button expand="block" shape="round" routerLink='/mes-produits' >
+          <ion-icon name="storefront-sharp"></ion-icon>
+            <ion-label style="font-size: 26px;">Mes produits</ion-label>
+        </ion-button>
+
+        <ion-button expand="block" shape="round" color="danger" (click)="disconnect()">
+          <ion-icon name="power"></ion-icon>
+          <ion-label style="font-size: 26px;">Deconnexion</ion-label>
+        </ion-button>
+      </ion-card>
+ 
     </div>
 
     <ng-template #elseCondition>
