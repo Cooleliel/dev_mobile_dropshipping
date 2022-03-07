@@ -1,5 +1,5 @@
 <ion-slides [options]="produitsSlideOpts"><!--Mise en page d'un ensemble de slides-->
   <ion-slide  *ngFor="let produitSlide of  produitSlides"><!--La boucle *ngFor permet de parcourir le tableau produitSlides et de recuperer ligne par ligne les donnees avec la variable  produitSlide-->
-    <app-produit-card [produitCard]="produitSlide"  (clicProdC)="envoyerProduitIdS($event)"></app-produit-card><!--Appel de la vue app-produit-card(html) qui est un composant et qui recoit la variable produitSlide--->
+    <app-produit-card [produitCard]="produitSlide"  (clicProdC)="envoyerIdProduitS($event)"></app-produit-card><!--Appel de la vue app-produit-card(html) qui est un composant et qui recoit la variable produitSlide--->
   </ion-slide>
 </ion-slides>

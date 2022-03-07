@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute } from '@angular/router';
-import { ToastController } from '@ionic/angular';
-import { Produit } from 'src/app/models/produit.model';
-import { ProduitService } from 'src/app/services/produit.service';
+import { Observable } from 'rxjs/internal/Observable';
+import { Articles } from 'src/app/models/Articles.model';
 
 @Component({
   selector: 'app-details',
@@ -10,18 +10,33 @@ import { ProduitService } from 'src/app/services/produit.service';
   styleUrls: ['./details.page.scss'],
 })
 export class DetailsPage implements OnInit {
-  id: number;  //Declaration de variable qui va recevoir l'id du produit
+  id: any;  //Declaration de variable qui va recevoir l'id du Articles
 
-  produit:  Produit;//declaration d'objet de type Produit
+  articleD  = {}  as  Articles  ;//declaration d'un objet tableau de type Articles lie a la methode obtenirArticles //declaration d'un objet de type Articles lie a la methode obtenirIdProduit
   constructor(  
     private activatedRoute: ActivatedRoute  ,
-    private produitService: ProduitService  ,
-    private toastCtrl:  ToastController
+    private firestore: AngularFirestore  ,
 
     ) { 
-    this.id = +this.activatedRoute.snapshot.paramMap.get('id');//recuperation de l'id 
+    this.id = this.activatedRoute.snapshot.paramMap.get('id');//recuperation de l'id
+    console.log(this.id);
   }
   ngOnInit() {
-    this.produit  = this.produitService.obtenirProduitParId(this.id);//appel de la fonction getProduitById qui prend en parametre l'id du produit et le retourne dans l'objet Produit
+    
+    this.obtenirIdProduit(this.id);//appel de la fonction getProduitById qui prend en parametre l'id du produit et le retourne dans l'objet Produit
+  }
+
+  
+  //Declarations de la fonction obtenirProduitId qui permet d'avoir les produits par leur id
+  obtenirIdProduit(id: string){
+   this.firestore
+   .doc('articles/' + id)
+   .valueChanges()
+   .subscribe(data  =>  {
+     this.articleD.categorie = data['categorie'] ;
+     this.articleD.description = data['description'] ;
+     this.articleD.prix = data['prix'] ;
+     this.articleD.image = data['image'] ;
+   })  ;
   }
 }

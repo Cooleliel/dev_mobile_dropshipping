@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore,  AngularFirestoreCollection } from '@angular/fire/compat/firestore';
-import { of, Subject } from 'rxjs';
-import { collection, query, where } from "firebase/firestore";
+//import { of, Subject } from 'rxjs';
+//import { collection, query, where } from "firebase/firestore";
 import { Router } from "@angular/router";
 import{ Storage } from '@ionic/storage';
 
@@ -17,7 +17,7 @@ export class AuthService {
   ) 
   {}
 
-    createUser(value) {
+  createUser(value) {
       return new Promise<any>((resolve, reject) => {
         this.angularFireAuth.createUtilisateur(value.nom, value.prenom, value.numero, value.email, value.password)
           .then(
@@ -37,7 +37,7 @@ export class AuthService {
       })
   }
 
-  createArticle(value,url){
+  createArticle(value , url){
 
     this.angularFireAuth.createArticles(value.id_user, value.categorie, value.description, value.stock, value.prix, url)
           .then(

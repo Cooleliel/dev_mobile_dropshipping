@@ -45,10 +45,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/panier/panier.module').then( m => m.PanierPageModule)
   },
   {
-    path: 'details',
-    loadChildren: () => import('./pages/details/details.module').then( m => m.DetailsPageModule)
-  },
-  {
     path: 'mes-produits',
     loadChildren: () => import('./pages/mes-produits/mes-produits.module').then( m => m.MesProduitsPageModule)
   },

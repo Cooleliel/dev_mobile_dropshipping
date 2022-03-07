@@ -1,7 +1,11 @@
 
 export interface Articles{
-    nom: string;
+    id:    string;
+    user_id:    string;
+    categorie: string;
     description:string;
-    prix:number;
+    stock:  string;
+    prix:string;
+    image:  string;
     
 }
