@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Articles } from 'src/app/models/Articles.model';
 import { ProduitService } from 'src/app/services/produit.service';
 import { AngularFirestore,  AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-produit',
@@ -12,16 +13,16 @@ import { AngularFirestore,  AngularFirestoreCollection } from '@angular/fire/com
 export class ProduitPage implements OnInit {
   articlesP: Articles[] = []  ;
 
-  constructor(private firestore:  AngularFirestore,  private produitService: ProduitService  , private router: Router  ) { }
+  constructor(private firestore:  AngularFirestore,  private produitService: ProduitService  , private navCtrl:  NavController  ) { }
 
   ngOnInit() {
     this.obtenirArticles() ;
   }
-  redirigerVersPageDetails(idItemProduit:  string)  {
-    this.router.navigateByUrl('details?id='+idItemProduit);
+  redirigerVersPageDetails(idItemProduit:  String)  {
+    this.navCtrl.navigateForward('/details/'  + idItemProduit) ; 
   }
 
-  obtenirArticles() : Articles[] {
+  obtenirArticles() {
     this.firestore
     .collection('articles')
     .snapshotChanges()
@@ -41,8 +42,6 @@ export class ProduitPage implements OnInit {
         };
       });
     }) ; 
-
-    return this.articlesP;
-   }
+  }
 
 }

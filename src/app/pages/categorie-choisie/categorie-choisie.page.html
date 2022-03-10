@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar   color="danger">
+    <ion-buttons slot="start">
+
+      <ion-back-button    defaultHref="/accueil"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons  slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only"  name="cart-sharp"></ion-icon>
+
+      </ion-button>
+    </ion-buttons>
+    <ion-title  class="ion-text-center">{{chaine1}}</ion-title>
+
+  </ion-toolbar>
+  <ion-toolbar  id="search-bar">
+    <ion-searchbar  placeholder="Produits / Vendeurs .... "></ion-searchbar><!--Ajout d'une barre de recherche-->
+      
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <app-categorie-grid   [categorieGrids]="categoriesChoisie" (envIdCatG)="redirigerVersPageDetails($event)"></app-categorie-grid>
+</ion-content>
+

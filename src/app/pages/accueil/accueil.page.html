@@ -31,7 +31,7 @@
 
     <ion-slides [options]="slideOpts"><!--Mise en page d'un ensemble de slides-->
       <ion-slide  *ngFor="let articleA of  articlesA"><!--La boucle *ngFor permet de parcourir le tableau categorieSlides et de recuperer ligne par ligne les donnees avec la variable  categorieSlide-->
-        <app-categorie-card [categorieCard]="articleA"  (click)="redirigerVersPageDetails(articleA.id)"></app-categorie-card><!--Appel de la vue app-categorie-card(html) qui est un composant et qui recoit la variable categorieSlide--->
+        <app-categorie-card [categorieCard]="articleA"  (click)="redirigerVersPageCategorieChoisie(articleA.id)"></app-categorie-card><!--Appel de la vue app-categorie-card(html) qui est un composant et qui recoit la variable categorieSlide--->
         <!--appel de la fonction goToDetailsPage qui envoye des donnees lorssqu'on fait un clic-->
 
 

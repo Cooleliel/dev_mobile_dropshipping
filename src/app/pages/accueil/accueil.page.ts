@@ -36,6 +36,10 @@ export class AccueilPage  implements  OnInit{
     this.navCtrl.navigateForward('/details/'  + idItemProduit) ; 
   }
 
+  redirigerVersPageCategorieChoisie(categorieItemProduit:  string)  {
+    this.navCtrl.navigateForward('/categorie-choisie/'  + categorieItemProduit) ; 
+  }
+
   //declaration de la fonction qui recoit l'id du produit clique en parametre qui le redirige a la page details
   redirigerVersPageProduit()  {
     this.router.navigate(['produit']);

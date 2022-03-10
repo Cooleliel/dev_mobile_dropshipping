@@ -13,10 +13,9 @@ import  { LoadingController, Platform, ToastController  , NavController}  from  
   styleUrls: ['./categorie.page.scss'],
 })
 export class CategoriePage implements OnInit {
-  //tousCategories: Categorie[] = []  ;
   categories: Articles[] = []  ;
 
-  constructor( private router: Router  , private firestore:  AngularFirestore , private navCtrl:  NavController) { }
+  constructor(  private firestore:  AngularFirestore , private navCtrl:  NavController) { }
 
   ngOnInit() {
     this.obtenirCategories() ;
@@ -29,7 +28,7 @@ export class CategoriePage implements OnInit {
   }
 
 
-  obtenirCategories(): Articles[] {
+  obtenirCategories() {
     this.firestore
     .collection('articles')
     .snapshotChanges()
@@ -48,10 +47,7 @@ export class CategoriePage implements OnInit {
 
         };
       });
-    }) ; 
-
-    return this.categories;
-
+    }) ;
   }
 
 }
