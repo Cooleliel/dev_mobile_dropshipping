@@ -56,6 +56,10 @@ const routes: Routes = [
     path: 'categorie-choisie/:id',
     loadChildren: () => import('./pages/categorie-choisie/categorie-choisie.module').then( m => m.CategorieChoisiePageModule)
   },
+  {
+    path: 'profils/:idUser',
+    loadChildren: () => import('./pages/profils/profils.module').then( m => m.ProfilsPageModule)
+  },
 ];
 
 @NgModule({

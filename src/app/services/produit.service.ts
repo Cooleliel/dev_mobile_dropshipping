@@ -1,48 +1,93 @@
 //Declaration des services lies a la  class Produit dans le dossier models
 
 import { Injectable } from "@angular/core";
-import { AngularFirestore,  AngularFirestoreCollection } from '@angular/fire/compat/firestore';
-import { Articles } from "../models/Articles.model";
+import { Produit } from "../models/produit.model";
 @Injectable({
  providedIn: 'root'
 })
 
 export class ProduitService {
  //Declarations de la fonction getProduits qui permet d'avoir les produits  sous forme de tableau
- articles: Articles[] = []  ;
- constructor(public firestore: AngularFirestore){}
-
- ngOnInit() {
-  this.obtenirArticles() ;
-}
-
- obtenirArticles() : Articles[] {
-  this.firestore
-  .collection('articles')
-  .snapshotChanges()
-  .subscribe( data  =>  {
-
-    this.articles  = data.map( e =>  {
-      return  {
-        id: e.payload.doc.id  ,
-
-        user_id:  e.payload.doc.data()['user_id'] ,
-        categorie:  e.payload.doc.data()['categorie'] ,
-        description:  e.payload.doc.data()['description'],
-        prix:  e.payload.doc.data()['prix'],
-        stock:  e.payload.doc.data()['stock'],
-        image:  e.payload.doc.data()['image']
-
-      };
-    });
-  }) ; 
-
-  return this.articles;
- }
 
  
 
-  /*Declarations de la fonction getCaracteristique qui permet d'avoir les caracterisques des produits
+ obtenirProduits() : Produit[] {
+  return [
+   {
+    id: 1,
+    nom: 'Fasion Jeans',
+    prix: 12,
+    imageUrl: '../../assets/images/im1.jpg',
+    liked: true,
+   },
+   {
+    id: 2,
+    nom: 'Fasion Jeans',
+    prix: 12,
+    imageUrl: '../../assets/images/im6.jpg',
+    liked: false,
+   },
+   {
+    id: 3,
+    nom: 'Fasion Jeans',
+    prix: 12,
+    imageUrl: '../../assets/images/im4.jpg',
+    liked: false,
+   },
+   {
+    id: 4,
+    nom: 'Fasion Jeans',
+    prix: 12,
+    imageUrl: '../../assets/images/im2.jpg',
+    liked: true,
+   },
+   {
+    id: 5,
+    nom: 'Fasion Jeans',
+    prix: 12,
+    imageUrl: '../../assets/images/im3.jpg',
+    liked: true,
+   },
+   {
+    id: 6,
+    nom: 'Fasion Jeans',
+    prix: 12,
+    imageUrl: '../../assets/images/im1.jpg',
+    liked: true,
+   },
+   {
+    id: 7,
+    nom: 'Fasion Jeans',
+    prix: 12,
+    imageUrl: '../../assets/images/im6.jpg',
+    liked: false,
+   },
+   {
+    id: 8,
+    nom: 'Fasion Jeans',
+    prix: 12,
+    imageUrl: '../../assets/images/im4.jpg',
+    liked: false,
+   },
+   {
+    id: 9,
+    nom: 'Fasion Jeans',
+    prix: 12,
+    imageUrl: '../../assets/images/im2.jpg',
+    liked: true,
+   },
+   {
+    id: 10,
+    nom: 'Fasion Jeans',
+    prix: 12,
+    imageUrl: '../../assets/images/im3.jpg',
+    liked: true,
+   }
+   
+  ] ;
+ }
+
+  //Declarations de la fonction getCaracteristique qui permet d'avoir les caracterisques des produits
   obtenirCaracterisques(): Produit[] {
   return this.obtenirProduits().slice(1 , 3) ;
  }
@@ -51,9 +96,9 @@ export class ProduitService {
  obtenirMeilleuresVentes(): Produit[] {
   return this.obtenirProduits().slice(2 , 5) ;
  }
- */
- //Declarations de la fonction obtenirProduitId qui permet d'avoir les produits par leur id
- obtenirProduitId(id: string): Articles{
-  return this.obtenirArticles().find((produit) => produit.id === id ) ;
+
+ //Declarations de la fonction getProduitById qui permet d'avoir les produits par leur id
+ obtenirProduitParId(id: number): Produit{
+  return this.obtenirProduits().find((produit) => produit.id == id ) ;
  }
 }

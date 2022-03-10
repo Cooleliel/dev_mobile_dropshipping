@@ -59,17 +59,13 @@ export class AuthService {
   signinUser(value) {
 
     this.user= this.firestore.collection('utilisateurs').valueChanges();
-
+console.log(value.password);
+console.log(value.email);
     this.firestore.collection('utilisateurs', ref => ref.where('code', '==', value.password).where('email', '==', value.email)).snapshotChanges().subscribe(data =>{
       if(data.length >0)
       {
         this.firestore.collection('utilisateurs', ref => ref.where('code', '==', value.password).where('email', '==', value.email)).snapshotChanges().subscribe(data3 =>{
           data3.forEach(data4=> {
-
-            /*console.log('nom' + data4.payload.doc.data()['nom']);
-            console.log('prenom' + data4.payload.doc.data()['prenom']);
-            console.log('numero' + data4.payload.doc.data()['numero']);
-            console.log('email' + data4.payload.doc.data()['email']);*/
 
             this.storage.set('user_name', data4.payload.doc.data()['nom'])
             this.storage.set('user_id', data4.payload.doc.id)
@@ -123,7 +119,9 @@ export class AuthService {
         return val;
       });
   }
-
-
-
+/*
+ utilisateurId(id: number) {
+  return this.obtenirProduits().find((produit) => produit.id == id ) ;
+ }
+*/
 }
