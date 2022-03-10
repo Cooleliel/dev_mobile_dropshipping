@@ -7,111 +7,61 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content  [fullscreen]>
+<ion-content fullscreen>
 
-<ion-card>
-  <ion-grid>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
 
-    <ion-row>
-      <ion-col>
-   
-            <img src="assets/images/im3.jpg" />
+  <ion-card *ngFor="let article of produitPanier; let i=index">
+    <ion-grid>
   
-      </ion-col>
-      <ion-col>
-        <div>
+      <ion-row>
+        <ion-col>
+     
+              <img width="200px" height="100px" [src]="article.produit.image"/>
+    
+        </ion-col>
+        <ion-col>
+          <div>
+  
+            <strong><p style="margin-top: -1px;">{{article.produit.categorie}}</p></strong>
 
-          <strong><p>Apple design </p></strong>
-          <p style="color: red; margin-top: -10px;">$38 <ion-icon style="display: inline-block; margin-left: 120px; font-size: 25px; " name="close-circle"></ion-icon> </p> 
+            <p>
+              <ion-badge color="primary">{{article.nombre}}</ion-badge> x {{article.produit.prix}}FCFA
+            </p>
+                 <p style="font-size: 50px solid;">Total:  {{article.nombre*article.produit.prix}}FCFA </p>
 
-          <ion-icon style="font-size: 25px; margin-top: -55px;" name="add-circle"></ion-icon>  <ion-icon style="display: inline-block; font-size: 25px; margin-left: 70px; margin-top: -55px;" name="remove-circle"></ion-icon>
+            <button (click)="removeitem(article, i)" style="color: red; margin-top: -10px; background-color: Transparent; background-repeat:no-repeat; border: none;"> <ion-icon style="display: inline-block; margin-left: 150px; font-size: 25px;" name="close-circle"></ion-icon></button> 
+  
+  <button (click)="addsamearticle(article.produit)" style="margin-top: -10px;color: grey; background-color: Transparent; background-repeat:no-repeat; border: none;"><ion-icon style="font-size: 25px; margin-top: -65px;" name="add-circle"></ion-icon> </button> 
+  <button (click)="reducearticle(article.produit)" style="margin-top: -10px; color: grey; background-color: Transparent; background-repeat:no-repeat; border: none;"> <ion-icon style="display: inline-block; font-size: 25px; margin-left: 70px; margin-top: -65px;" name="remove-circle"></ion-icon> </button> 
+  
+          </div>
+        </ion-col>
+      </ion-row>
+   
+    </ion-grid>
+  </ion-card>
 
-        </div>
-      </ion-col>
-    </ion-row>
- 
-  </ion-grid>
-</ion-card>
+  <ion-card style="text-align: center">
 
-<ion-card>
-  <ion-grid>
-
-    <ion-row>
-      <ion-col>
-        <div>
-            <img src="assets/images/im4.jpg" />
-        </div>
-      </ion-col>
-      <ion-col>
-        <div>
-          <strong><p>Apple design </p></strong>
-          <p style="color: red; margin-top: -10px;">$38 <ion-icon style="display: inline-block; margin-left: 120px; font-size: 25px; " name="close-circle"></ion-icon> </p> 
-
-          <ion-icon style="font-size: 25px; margin-top: -55px;" name="add-circle"></ion-icon>  <ion-icon style="display: inline-block; font-size: 25px; margin-left: 70px; margin-top: -55px;" name="remove-circle"></ion-icon>
-
-        </div>
-      </ion-col>
-    </ion-row>
- 
-  </ion-grid>
-</ion-card>
-
-<ion-card>
-  <ion-grid>
-
-    <ion-row>
-      <ion-col>
-        <div>
-            <img src="assets/images/im1.jpg" />
-        </div>
-      </ion-col>
-      <ion-col>
-        <div>
-          <strong><p>Apple design </p></strong>
-          <p style="color: red; margin-top: -10px;">$38 <ion-icon style="display: inline-block; margin-left: 120px; font-size: 25px; " name="close-circle"></ion-icon> </p> 
-
-          <ion-icon style="font-size: 25px; margin-top: -55px;" name="add-circle"></ion-icon>  <ion-icon style="display: inline-block; font-size: 25px; margin-left: 70px; margin-top: -55px;" name="remove-circle"></ion-icon>
-
-        </div>
-      </ion-col>
-    </ion-row>
- 
-  </ion-grid>
-</ion-card>
-
-<ion-card>
-  <ion-grid>
-
-    <ion-row>
-      <ion-col>
-        <div>
-          <strong><h4>Nombre d'article: </h4></strong>  
-        </div>
-      </ion-col>
-      <ion-col>
-        <div>
-          <strong><h4>3</h4></strong>
-        </div>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col>
-        <div>
-          <strong><h2>Prix total: </h2></strong>  
-        </div>
-      </ion-col>
-      <ion-col>
-        <div>
-          <strong><h2>$120</h2></strong>
-        </div>
-      </ion-col>
-    </ion-row>
- 
-  </ion-grid>
-
-  <ion-button class="btn" size="medium" color="danger" expand="block" shape="round" >Paiement</ion-button>
-
-</ion-card>
-
+    <h3 color="primary">Panier: {{total}} FCFA  </h3>
+    <h3 color="primary">Articles: {{nombretotal}} </h3>
+  
+  </ion-card>
+  
 </ion-content>
+
+<ion-footer>
+  
+        <ion-button expand="block" color="medium" block="outline">
+          Proceder a l'achat
+        </ion-button>
+
+</ion-footer>

@@ -1,9 +1,75 @@
-<ion-header>
+<ion-app>
   <ion-toolbar>
-    <ion-title>profils</ion-title>
+    <ion-buttons slot="start">
+
+      <ion-back-button color="danger" defaultHref="/"></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
-</ion-header>
+  <ion-content  [fullscreen]="true">
+    <div>
+        <div class="header-bg">
+          <h2> 
+            {{users.nom}} {{users.prenom}}
+          </h2>
+          <div class="space">
+             <div class="following">
+                <ion-badge color="danger" mode="ios">42</ion-badge>
+                <p>Abonnés</p>
+             </div>
+             <div class="following">
+              <ion-badge color="danger" mode="ios">42</ion-badge>
+              <p>Abonnements</p>
+           </div>
+          </div>
+        </div>
+    
+        <div class="flex">
+          <div class="border-red">
+            <div class="border-white">
+              <div class="img-box">
+                <img src="assets/images/im6.jpg" alt="photo" width="150px" height="130px">
+              </div>
+            </div>
+          </div>
+        </div>
+    
+          <ion-card>
+            <h3 style="text-align: center; font-weight: bold">
+              Email: {{users.email}}
+            </h3>
+            <h3 style="text-align: center; font-weight: bold">
+              Numero: {{users.number}}
+            </h3>
+  
+          </ion-card>
+     
+        </div>
 
-<ion-content>
+        <ion-grid>
 
-</ion-content>
+          <ion-row size="10" >
+            <ion-col size="6" *ngFor="let article of articles | async">
+              <div>
+                <ion-card>
+      
+                  <img width="160" height="100"[src]="article.image" alt="">
+                  <ion-card-header>
+      
+                    <ion-card-subtitle style="color: red;" >{{ article.id }}{{ article.prix }} FCFA</ion-card-subtitle>
+                    <strong><h6 style="color: black;">{{ article.categorie }}</h6> </strong>
+                    
+                  </ion-card-header>
+                  <ion-item *ngFor="let user of users | async">
+                    <ion-button (click)="allerauprofil(publicateur)">{{ user.prenom }}</ion-button>
+                  </ion-item>
+                </ion-card>
+              </div>
+            </ion-col>
+          </ion-row>
+      
+       
+        </ion-grid>
+      
+    
+      </ion-content>
+</ion-app>

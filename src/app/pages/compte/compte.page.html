@@ -45,6 +45,35 @@
           <ion-label style="font-size: 26px;">Deconnexion</ion-label>
         </ion-button>
       </ion-card>
+
+
+
+      <ion-grid>
+
+        <h4 style="text-align: center;">Mes produits</h4>
+
+        <ion-row size="10" >
+          <ion-col size="6" *ngFor="let article of articles | async">
+            <div>
+              <ion-card>
+    
+                <img width="160" height="100"[src]="article.image" alt="">
+                <ion-card-header>
+    
+                  <ion-card-subtitle style="color: red;" >{{ article.id }}{{ article.prix }} FCFA</ion-card-subtitle>
+                  <strong><h6 style="color: black;">{{ article.categorie }}</h6> </strong>
+                  
+                </ion-card-header>
+             
+              </ion-card>
+            </div>
+          </ion-col>
+        </ion-row>
+    
+     
+      </ion-grid>
+    
+
  
     </div>
 

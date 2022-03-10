@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { Articles } from 'src/app/models/Articles.model';
 import { Produit } from 'src/app/models/produit.model';
 
 @Component({
@@ -9,11 +8,11 @@ import { Produit } from 'src/app/models/produit.model';
   styleUrls: ['./produit-slide.component.scss'],
 })
 export class ProduitSlideComponent {
-  @Input()  produitSlides:  Articles[] = [];//declaration de tableau d'objets de type Produit
+  @Input()  produitSlides:  Produit[] = [];//declaration de tableau d'objets de type Produit
   @Output() envIdProdS = new EventEmitter();//declaration de variable emettant un evenement en sortie(transmet des donnees a son composant parent) 
 
   //la fonction sharedProduitById() utilise la variable de soirte shared pour declencher un evenement avec la valeur idProduit
-  envoyerIdProduitS(idProduit: string)  {
+  envoyerProduitIdS(idProduit: number)  {
     this.envIdProdS.emit(idProduit)  ;
   }
   produitsSlideOpts = {
@@ -22,6 +21,6 @@ export class ProduitSlideComponent {
 
     slidesPerView: 2.2,
     slidesOffsetBefore: 5
-  } ;
+  } ;accueil
 }
 

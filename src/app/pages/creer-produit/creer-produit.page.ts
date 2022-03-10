@@ -94,13 +94,14 @@ export class CreerProduitPage implements OnInit {
       this.afSG.ref(this.imagePath).getDownloadURL().subscribe(imgURL =>{
         console.log(imgURL);
         this.url=imgURL;
+        this.AuthService.createArticle(value,this.url);
+        this.router.navigateByUrl('/mes-produits');
       });
 
       await alert.present();
     });
 
-    this.AuthService.createArticle(value,this.url);
-    this.router.navigateByUrl('/mes-produits');
+  
 }
 
 async addPhoto(source: string) {

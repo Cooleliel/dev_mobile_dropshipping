@@ -59,7 +59,8 @@ export class AuthService {
   signinUser(value) {
 
     this.user= this.firestore.collection('utilisateurs').valueChanges();
-
+console.log(value.password);
+console.log(value.email);
     this.firestore.collection('utilisateurs', ref => ref.where('code', '==', value.password).where('email', '==', value.email)).snapshotChanges().subscribe(data =>{
       if(data.length >0)
       {

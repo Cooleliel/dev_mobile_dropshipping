@@ -53,7 +53,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/creer-produit/creer-produit.module').then( m => m.CreerProduitPageModule)
   },
   {
-    path: 'profils',
+    path: 'profils/:idUser',
     loadChildren: () => import('./pages/profils/profils.module').then( m => m.ProfilsPageModule)
   },
 ];

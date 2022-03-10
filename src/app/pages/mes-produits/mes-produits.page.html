@@ -31,13 +31,11 @@
             <img width="160" height="100"[src]="article.image" alt="">
             <ion-card-header>
 
-              <ion-card-subtitle style="color: red;" >{{ article.prix }} FCFA</ion-card-subtitle>
+              <ion-card-subtitle style="color: red;" >{{ article.id }}{{ article.prix }} FCFA</ion-card-subtitle>
               <strong><h6 style="color: black;">{{ article.categorie }}</h6> </strong>
               
             </ion-card-header>
-            <ion-item *ngFor="let user of users | async">
-              <a (envIdProdS)="allerauprofil(user.id)">{{ user.nom }}</a>
-            </ion-item>
+  
           </ion-card>
         </div>
       </ion-col>

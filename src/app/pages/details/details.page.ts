@@ -3,6 +3,9 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/internal/Observable';
 import { Articles } from 'src/app/models/Articles.model';
+import { panier } from 'src/app/models/panier.model';
+import{ Storage } from '@ionic/storage';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-details',
@@ -16,7 +19,8 @@ export class DetailsPage implements OnInit {
   constructor(  
     private activatedRoute: ActivatedRoute  ,
     private firestore: AngularFirestore  ,
-
+    public storage: Storage,
+    public router: Router
     ) { 
     this.id = this.activatedRoute.snapshot.paramMap.get('id');//recuperation de l'id
     console.log(this.id);
@@ -33,10 +37,71 @@ export class DetailsPage implements OnInit {
    .doc('articles/' + id)
    .valueChanges()
    .subscribe(data  =>  {
+     this.articleD.id= id;
      this.articleD.categorie = data['categorie'] ;
      this.articleD.description = data['description'] ;
      this.articleD.prix = data['prix'] ;
      this.articleD.image = data['image'] ;
    })  ;
   }
+
+
+  ajouterArticleAuPanier( articledetails: Articles):void {
+
+    console.log(articledetails.categorie)
+
+    let ajout: boolean =false;
+    //si le pânier est vide
+
+    this.storage.get("panier").then((data: panier[]) => {
+      if(data===null || data.length===0)
+      {
+        data=[];
+        data.push({
+          produit: articledetails,
+          prix: articledetails.prix,
+          nombre: 1,
+          categorie: articledetails.categorie,
+        })
+      }
+
+      else{
+       
+        for (let i=0; i<data.length; i++)
+        {
+            //le panier n'est pas vide et contient deja notre element
+          const element: panier= data[i];
+
+          
+          console.log(element.produit.id)
+
+          if(articledetails.id === element.produit.id)
+          {
+            console.log('deja present')
+            element.nombre+= 1;
+            element.prix+= articledetails.prix;
+            ajout= true;
+          }
+        }
+            //le panier n'est pas vide et ne contient pas notre element
+
+            if(!ajout)
+            {
+              data.push({
+                produit: articledetails,
+                prix: articledetails.prix,
+                nombre: 1,
+                categorie: articledetails.categorie,
+              })
+            }
+
+          }
+
+          this.storage.set("panier", data);
+          this.router.navigateByUrl('/panier');
+    })
+    
+  }
+
+
 }

@@ -28,6 +28,7 @@ export class MesProduitsPage implements OnInit {
   public user_prenom: string;
   public user_number: string;
   public user_id: string;
+  public publicateur: string;
   id: any;
  
 
@@ -36,15 +37,23 @@ export class MesProduitsPage implements OnInit {
   ngOnInit() {
 
 this.AuthService.getsession().then(data =>{
-  console.log(data);
+  //console.log(data);
 
   this.firestore.collection('articles', ref => ref.where('user_id', '==', data)).snapshotChanges().subscribe(data3 =>{
     data3.forEach(data4=> {
 
      this.user_concerné=data4.payload.doc.data()['user_id'];
      this.users= this.firestore.collection('utilisateurs', ref => ref.where(documentId(), '==',data4.payload.doc.data()['user_id'])).valueChanges(); 
-     /*
+     this.firestore.collection('utilisateurs', ref => ref.where(documentId(), '==',data4.payload.doc.data()['user_id'])).snapshotChanges().subscribe(data => {
+       data.forEach(data1 => {
+        console.log('ok');
+        console.log(data1.payload.doc.id);
+        this.publicateur=data1.payload.doc.id;
+       })
+     })
      console.log(this.users);
+     
+     /*
       console.log('categorie' + data4.payload.doc.data()['categorie']);
       console.log('description' + data4.payload.doc.data()['description']);
       console.log('prix' + data4.payload.doc.data()['prix']);
@@ -66,7 +75,8 @@ this.AuthService.getsession().then(data =>{
   @Output() env = new EventEmitter();//declaration de variable emettant un evenement en sortie(transmet des donnees a son composant parent) 
 
   allerauprofil(idUser: string)  {
-      this.router.navigate(['profils' , idUser])
+      //this.router.navigate(['profils' , idUser])
+      this.navCtrl.navigateForward('/profils/'  + idUser) ; 
     }
 
 }

@@ -51,6 +51,11 @@ const routes: Routes = [
         redirectTo: '/tabs/accueil',
         pathMatch: 'full'
       },
+      {
+        path: '',
+        redirectTo: '/tabs/profils',
+        pathMatch: 'full'
+      },
     ]
   },
 ];

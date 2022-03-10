@@ -3,5 +3,6 @@ export interface Utilisateurs{
     nom: string ;
     prenom: string ;
     email: string;
+    number: string ;
     code: string;
    }
