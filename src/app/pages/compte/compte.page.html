@@ -5,23 +5,13 @@
       <h2> 
         {{username}} {{user_prenom}}
       </h2>
-      <div class="space">
-         <div class="following">
-            <ion-badge color="danger" mode="ios">42</ion-badge>
-            <p>Abonnés</p>
-         </div>
-         <div class="following">
-          <ion-badge color="danger" mode="ios">42</ion-badge>
-          <p>Abonnements</p>
-       </div>
-      </div>
     </div>
 
     <div class="flex">
       <div class="border-red">
         <div class="border-white">
           <div class="img-box">
-            <img src="assets/images/im6.jpg" alt="photo" width="150px" height="130px">
+            <img src="assets/images/image12.png" alt="photo" width="150px" height="130px">
           </div>
         </div>
       </div>
@@ -34,23 +24,18 @@
         <h3 style="text-align: center; font-weight: bold">
           Numero: {{user_number}}
         </h3>
-
-        <ion-button expand="block" shape="round" routerLink='/mes-produits' >
-          <ion-icon name="storefront-sharp"></ion-icon>
-            <ion-label style="font-size: 26px;">Mes produits</ion-label>
-        </ion-button>
-
-        <ion-button expand="block" shape="round" color="danger" (click)="disconnect()">
-          <ion-icon name="power"></ion-icon>
-          <ion-label style="font-size: 26px;">Deconnexion</ion-label>
-        </ion-button>
+ 
+        <div style="text-align: center; font-weight: bold">
+        <button class="button1 button5" routerLink='/mes-produits'> <ion-icon style="font-size: 30px;" name="cart"></ion-icon></button>
+        <button class="button button5" (click)="disconnect()"> <ion-icon style="font-size: 30px;" name="power"></ion-icon></button> 
+        </div>
       </ion-card>
 
 
 
       <ion-grid>
 
-        <h4 style="text-align: center;">Mes produits</h4>
+        <h4 style="text-align: center; font-weight: bold">Mes produits</h4>
 
         <ion-row size="10" >
           <ion-col size="6" *ngFor="let article of articles | async">
@@ -60,8 +45,8 @@
                 <img width="160" height="100"[src]="article.image" alt="">
                 <ion-card-header>
     
-                  <ion-card-subtitle style="color: red;" >{{ article.id }}{{ article.prix }} FCFA</ion-card-subtitle>
-                  <strong><h6 style="color: black;">{{ article.categorie }}</h6> </strong>
+                  <ion-card-subtitle style="color: red; font-weight: bold" >{{ article.id }}{{ article.prix }} FCFA</ion-card-subtitle>
+                  <strong><h6 style="color: black; font-weight: bold">{{ article.categorie }}</h6> </strong>
                   
                 </ion-card-header>
              

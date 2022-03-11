@@ -47,4 +47,32 @@ button {
   img {
     height: 200px;
   }
+
+
+  .button2 {
+    align-items: center;
+    background-color: rgb(218, 30, 92);
+    border: none;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+  }
+
+  .button1 {
+    background-color: rgb(60, 0, 255);
+    border: none;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+  }
+  
+  .button5 {border-radius: 50%;}
   
