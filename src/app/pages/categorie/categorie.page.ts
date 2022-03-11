@@ -13,8 +13,7 @@ import  { LoadingController, Platform, ToastController  , NavController}  from  
   styleUrls: ['./categorie.page.scss'],
 })
 export class CategoriePage implements OnInit {
-  categories: Articles[] = []  ;
-
+  categories: Categorie[] = []  ;
   constructor(  private firestore:  AngularFirestore , private navCtrl:  NavController) { }
 
   ngOnInit() {
@@ -23,31 +22,43 @@ export class CategoriePage implements OnInit {
 
 
 
-  redirigerVersPageDetails(idItemCategorie:  String)  {
-    this.navCtrl.navigateForward('/details/'  + idItemCategorie) ; 
+  redirigerVersPageCategorieChoisie(idItemCategorie:  String)  {
+    this.navCtrl.navigateForward('/categorie-choisie/'  + idItemCategorie) ; 
   }
 
 
   obtenirCategories() {
     this.firestore
-    .collection('articles')
+    .collection('categorie')
     .snapshotChanges()
     .subscribe( data  =>  {
 
       this.categories  = data.map( e =>  {
         return  {
           id: e.payload.doc.id  ,
-
-          user_id:  e.payload.doc.data()['user_id'] ,
-          categorie:  e.payload.doc.data()['categorie'] ,
-          description:  e.payload.doc.data()['description'],
-          prix:  e.payload.doc.data()['prix'],
-          stock:  e.payload.doc.data()['stock'],
+          titre:  e.payload.doc.data()['titre'],
           image:  e.payload.doc.data()['image']
 
         };
       });
     }) ;
   }
+
+  /*obtenirCategorie() {
+    this.firestore
+    .collection('categorie')
+    .snapshotChanges()
+    .subscribe( data  =>  {
+
+      this.categorie  = data.map( e =>  {
+        return  {
+          id: e.payload.doc.id  ,
+          titre:  e.payload.doc.data()['titre'] ,
+          image:  e.payload.doc.data()['image']
+
+        };
+      });
+    }) ;
+  }*/
 
 }

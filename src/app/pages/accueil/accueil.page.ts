@@ -13,7 +13,7 @@ import { NavController } from '@ionic/angular';
 })
 export class AccueilPage  implements  OnInit{
   articlesA: Articles[] = []  ;
-  categorieSlides: Categorie[] ;//declaration de tableau d'objets de type categories
+  categoriesSlides: Categorie[] =  [];//declaration de tableau d'objets de type categories
   caracteristiqueProduits: Articles[];//declaration de tableau d'objets de type caracteristiqueProduits
 
 
@@ -22,13 +22,14 @@ export class AccueilPage  implements  OnInit{
     initialSlide: 0, 
 
     spaceBetween:  0,
-    slidesPerView: 2.8,
+    slidesPerView: 2.2,
     slidesOffsetBefore: 6
 
   } ;
   constructor(private router: Router,private firestore: AngularFirestore  , private navCtrl:  NavController)  {
   }
   ngOnInit()  {
+    this.obtenirCategories();
     this.obtenirArticles();
   }
   //declaration de la fonction qui recoit l'id du produit clique en parametre qui le redirige a la page details
@@ -54,7 +55,25 @@ export class AccueilPage  implements  OnInit{
     this.router.navigate(['compte'])  ;
   }
 
-  obtenirArticles() : Articles[] {
+  obtenirCategories() : Categorie[] {
+    this.firestore
+    .collection('categorie')
+    .snapshotChanges()
+    .subscribe( data  =>  {
+
+      this.categoriesSlides  = data.map( e =>  {
+        return  {
+          id: e.payload.doc.id  ,
+          titre:  e.payload.doc.data()['titre'],
+          image:  e.payload.doc.data()['image']
+
+        };
+      });
+    }) ; 
+
+    return this.categoriesSlides;
+  }
+  obtenirArticles() {
     this.firestore
     .collection('articles')
     .snapshotChanges()
@@ -74,8 +93,6 @@ export class AccueilPage  implements  OnInit{
         };
       });
     }) ; 
-
-    return this.articlesA;
   }
 
 }

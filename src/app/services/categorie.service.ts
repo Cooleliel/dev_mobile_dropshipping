@@ -12,27 +12,27 @@ export class CategorieService{
 
   return[
    {
-    id: 1,
+    id: '1',
     titre: 'Men' ,
     image: '../../assets/images/im1.jpg'
    },
    {
-    id: 2,
+    id: '2',
     titre: 'Children' ,
     image: '../../assets/images/im1.jpg'
    },
    {
-    id: 3,
+    id: '3',
     titre: 'women' ,
     image: '../../assets/images/im1.jpg'
    },
    {
-    id: 4,
+    id: '4',
     titre: 'girl' ,
     image: '../../assets/images/im1.jpg'
    },
    {
-    id: 5,
+    id: '5',
     titre: 'Eliel' ,
     image: '../../assets/images/im1.jpg'
    }
@@ -40,8 +40,8 @@ export class CategorieService{
  }
 
  //Declarations de la fonction getProduitById qui permet d'avoir les produits par leur id
- obtenirCategorieParId(id: number): Categorie{
-  return this.obtenirCategories().find((categorie) => categorie.id == id ) ;
+ obtenirCategorieParId(id: string): Categorie{
+  return this.obtenirCategories().find((categorie) => categorie.id === id ) ;
  }
 }
 

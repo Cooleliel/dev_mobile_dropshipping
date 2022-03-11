@@ -10,7 +10,5 @@
     <ion-item style="margin-left: -25px;" *ngFor="let utilisateur of utilisateurs | async">
       <ion-button color="light" (click)="allerauprofil(publicateur)">{{ utilisateur.prenom }}</ion-button>
     </ion-item>
-
-    <h2>{{ produitCard.nom | titlecase }}  </h2>
   </ion-card-content>
 </ion-card>

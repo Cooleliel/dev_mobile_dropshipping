@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { CategorieChoisiePageRoutingModule } from './categorie-choisie-routing.module';
 
 import { CategorieChoisiePage } from './categorie-choisie.page';
-import { CategorieGridModule } from 'src/app/composants/categorie-grid/categorie-grid.module';
+import { ProduitGridModule } from 'src/app/composants/produit-grid/produit-grid.module';
 
 @NgModule({
   imports: [
@@ -15,7 +15,8 @@ import { CategorieGridModule } from 'src/app/composants/categorie-grid/categorie
     FormsModule,
     IonicModule,
     CategorieChoisiePageRoutingModule,
-    CategorieGridModule
+    ProduitGridModule
+
   ],
   declarations: [CategorieChoisiePage]
 })

@@ -21,6 +21,6 @@ export class ProduitSlideComponent {
 
     slidesPerView: 2.2,
     slidesOffsetBefore: 5
-  } ;accueil
+  } ;
 }
 

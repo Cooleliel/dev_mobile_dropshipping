@@ -1,6 +1,6 @@
 //Declaration de la classe Categorie dans le dossier models
 export interface Categorie{
- id: number;
+ id: string;
  titre: string ;
  image: string ;
 }
