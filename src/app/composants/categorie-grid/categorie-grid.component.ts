@@ -8,7 +8,7 @@ import { Categorie } from 'src/app/models/categorie.model';
   styleUrls: ['./categorie-grid.component.scss'],
 })
 export class CategorieGridComponent{
-  @Input()  categorieGrids:  Articles[]  = [];//declaration de tableau d'objets de type Produit
+  @Input()  categorieGrids:  Categorie[]  = [];//declaration de tableau d'objets de type Produit
   @Output() envIdCatG = new EventEmitter();//declaration de variable emettant un evenement en sortie(transmet des donnees a son composant parent) 
 
   envoyerIdProduitG(idCategorie: string)  {

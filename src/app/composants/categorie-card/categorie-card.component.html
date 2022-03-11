@@ -1,7 +1,10 @@
 <ion-card (click)="obtenirIdCategorieC(categorieCard.id)"><!--Ajout d'une carte-->
-  <img width="160" height="100" [src]="categorieCard.image" id="image"><!--Ajout d'une image-->
+  <img width="160px" height="100px" [src]="categorieCard.image" id="image"><!--Ajout d'une image-->
   <ion-card-header>
-
-    <ion-card-title>  {{  categorieCard.categorie  }} </ion-card-title>
+   <ion-list>
+     <ion-label id="title">
+       {{categorieCard.titre}}
+     </ion-label>
+   </ion-list>
   </ion-card-header>
 </ion-card>

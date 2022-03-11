@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { Articles } from 'src/app/models/Articles.model';
+import { Categorie } from 'src/app/models/categorie.model';
 
 @Component({
   selector: 'app-categorie-choisie',
@@ -11,7 +12,7 @@ import { Articles } from 'src/app/models/Articles.model';
 })
 export class CategorieChoisiePage implements OnInit {
   categoriesChoisie: Articles[] = [] ;
-  articleD  = {}  as  Articles  ;
+  articleD  = {}  as  Categorie  ;
   id: any;
   categories: Articles[] = []  ;
   tab1: Articles[]  = []  ;
@@ -30,15 +31,16 @@ export class CategorieChoisiePage implements OnInit {
   obtenirCategorieProduitParId(id: string){
     //console.log(id);
     this.firestore
-    .doc('articles/' + id)
+    .doc('categorie/' + id)
     .valueChanges()
     .subscribe(data  =>  {
       //console.log( data['categorie']);
-      this.articleD.categorie = data['categorie'] ;
+      this.articleD.titre = data['titre'] ;
+      this.chaine1  = this.articleD.titre;
 
 
       this.firestore
-      .collection('articles', ref => ref.where('categorie', '==', this.articleD.categorie))
+      .collection('articles', ref => ref.where('categorie', '==', this.articleD.titre))
       .snapshotChanges().subscribe(data3 =>{
         data3.forEach(data4=> {
     
