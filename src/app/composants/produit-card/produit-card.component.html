@@ -1,14 +1,13 @@
 <ion-card (click)="obtenirIdProduitC(produitCard.id)"><!--Ajout d'une carte--><!--appel de la fonction getProduitById() qui envoye des donnees lorsqu'on fait un clic-->
   <img width="160px" height="100px" [src]="produitCard.image"><!--Ajout d'une image grace a la valeur d'attribut de l'objet produitCard-->
   <ion-card-content>
-
-    <ion-label>
-      <p style="font-size: 12px;" id="produitPrice">  {{ produitCard.prix  }} FCFA</p><!--Affiche la valeur d'attribut de l'objet produitCard-->
-      <ion-icon [color]="produitCard.liked ? 'danger' : ''" [name]="produitCard.liked ? 'heart' : 'heart-outline'"></ion-icon><!--Affiche l'icone favori en verifiant si elle a ete attribue-->
-    </ion-label>
-
-    <ion-item style="margin-left: -25px;" *ngFor="let utilisateur of utilisateurs | async">
-      <ion-button color="light" (click)="allerauprofil(publicateur)">{{ utilisateur.prenom }}</ion-button>
-    </ion-item>
+    <ion-list>
+      <ion-label>
+        <p  id="produitPrice">  {{ produitCard.prix  }} FCFA</p><!--Affiche la valeur d'attribut de l'objet produitCard-->
+      </ion-label>
+      <ion-label slot="end"  *ngFor="let utilisateur of utilisateurs | async"  (click)="allerauprofil(publicateur)">
+          {{ utilisateur.prenom }}
+      </ion-label>
+    </ion-list>
   </ion-card-content>
 </ion-card>

@@ -1,17 +1,15 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Articles } from 'src/app/models/Articles.model';
-import { Produit } from 'src/app/models/produit.model';
 import { Utilisateurs } from 'src/app/models/Utilisateurs.model';
 import { ProduitService } from 'src/app/services/produit.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import{ Storage } from '@ionic/storage';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AuthService } from '../../Service/auth.service';
-import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { LoadingController, AlertController, ToastController, NavController } from '@ionic/angular';
-import { AngularFirestore,  AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import { AngularFirestore} from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs/internal/Observable';
 import { doc, documentId } from 'firebase/firestore';
 
