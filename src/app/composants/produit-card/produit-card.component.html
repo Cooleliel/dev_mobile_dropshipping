@@ -6,8 +6,8 @@
         <p  id="produitPrice">  {{ produitCard.prix  }} FCFA</p><!--Affiche la valeur d'attribut de l'objet produitCard-->
         <ion-icon name="heart-outline" (click)="ajouterArticlefavoris(produitCard)"></ion-icon>
       </ion-label>
-      <ion-label slot="end"  *ngFor="let utilisateur of utilisateurs | async"  (click)="allerauprofil(publicateur)">
-          {{ utilisateur.prenom }}
+      <ion-label slot="end"  *ngFor="let utilisateur of utilisateurs | async">
+          <ion-text button    (click)="allerauprofil(publicateur)">{{ utilisateur.prenom }}</ion-text>
       </ion-label>
     </ion-list>
   </ion-card-content>
