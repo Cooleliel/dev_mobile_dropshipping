@@ -5,6 +5,6 @@ export interface Articles{
     categorie: string;
     description:string;
     stock:  string;
-    prix:any;
+    prix: any;
     image:  string;  
 }

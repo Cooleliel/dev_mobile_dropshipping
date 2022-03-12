@@ -24,75 +24,14 @@
 
     <ion-grid>
 
-      <ion-row>
-        <ion-col>
+      <ion-row size="10">
+        <ion-col size="6" *ngFor="let article of produitFavoris; let i=index">
           <div>
             <ion-card>
-              <img src="assets/images/im3.jpg" />
+              <img width="160" height="100" [src]="article.produit.image"/>
               <ion-card-header>
-                <ion-card-subtitle style="color: red;" >5000 FCFA</ion-card-subtitle>
-                <strong><h6 style="color: black;">Womens Long Sweater</h6> <ion-icon name="heart"></ion-icon> </strong>
-              </ion-card-header>
-            </ion-card>
-          </div>
-        </ion-col>
-        <ion-col>
-          <div>
-            <ion-card>
-              <img src="assets/images/im1.jpg" />
-              <ion-card-header>
-                <ion-card-subtitle style="color: red;" >5000 FCFA</ion-card-subtitle>
-                <strong><h6 style="color: black;">Womens Long Sweater</h6> <ion-icon name="heart"></ion-icon> </strong>
-              </ion-card-header>
-            </ion-card>
-          </div>
-        </ion-col>
-      </ion-row>
-
-      <ion-row>
-        <ion-col>
-          <div>
-            <ion-card>
-              <img src="assets/images/im3.jpg" />
-              <ion-card-header>
-                <ion-card-subtitle style="color: red;" >5000 FCFA</ion-card-subtitle>
-                <strong><h6 style="color: black;">Womens Long Sweater</h6> <ion-icon name="heart"></ion-icon> </strong>
-              </ion-card-header>
-            </ion-card>
-          </div>
-        </ion-col>
-        <ion-col>
-          <div>
-            <ion-card>
-              <img src="assets/images/im1.jpg" />
-              <ion-card-header>
-                <ion-card-subtitle style="color: red;" >5000 FCFA</ion-card-subtitle>
-                <strong><h6 style="color: black;">Womens Long Sweater</h6> <ion-icon name="heart"></ion-icon> </strong>
-              </ion-card-header>
-            </ion-card>
-          </div>
-        </ion-col>
-      </ion-row>
-
-      <ion-row>
-        <ion-col>
-          <div>
-            <ion-card>
-              <img src="assets/images/im3.jpg" />
-              <ion-card-header>
-                <ion-card-subtitle style="color: red;" >5000 FCFA</ion-card-subtitle>
-                <strong><h6 style="color: black;">Womens Long Sweater</h6> <ion-icon name="heart"></ion-icon> </strong>
-              </ion-card-header>
-            </ion-card>
-          </div>
-        </ion-col>
-        <ion-col>
-          <div>
-            <ion-card>
-              <img src="assets/images/im1.jpg" />
-              <ion-card-header>
-                <ion-card-subtitle style="color: red;" >5000 FCFA</ion-card-subtitle>
-                <strong><h6 style="color: black;">Womens Long Sweater</h6> <ion-icon name="heart"></ion-icon> </strong>
+                <ion-card-subtitle style="color: red;" >{{article.produit.prix}}FCFA</ion-card-subtitle>
+                <strong><h6 style="color: black;">{{article.produit.categorie}}</h6> <ion-icon style="color: rgb(250, 0, 196)" name="heart" (click)="removefavoris(article, i)"></ion-icon> </strong>
               </ion-card-header>
             </ion-card>
           </div>

@@ -12,7 +12,9 @@ import { LoadingController, AlertController, ToastController, NavController } fr
 import { AngularFirestore} from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs/internal/Observable';
 import { doc, documentId } from 'firebase/firestore';
-
+import { panier } from 'src/app/models/panier.model';
+import { favoris } from 'src/app/models/favoris.model';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-produit-card',
   templateUrl: './produit-card.component.html',
@@ -22,6 +24,7 @@ export class ProduitCardComponent {
   @Input()  produitCard:  Articles;//declaration d'objet de type Produit en entree(recoit des donnees de son composant parent)
   @Output() clicProdC = new EventEmitter();//declaration de variable emettant un evenement en sortie(transmet des donnees a son composant parent) 
 
+  produitfavoris: favoris[];
   users = {} as Utilisateurs; //declaration d'objet de type Produit
   utilisateur: Observable<import("@angular/fire/compat/firestore").DocumentChangeAction<unknown>[]>;
   articles: Observable<any[]>;
@@ -51,7 +54,8 @@ export class ProduitCardComponent {
     public alertController: AlertController, 
     public afSG: AngularFireStorage,
     public afDB: AngularFireDatabase,
-    public navCtrl: NavController
+    public navCtrl: NavController,
+    public router: Router,
 
     ){}
 
@@ -81,6 +85,58 @@ allerauprofil(idUser: string)  {
   //this.router.navigate(['profils' , idUser])
   this.navCtrl.navigateForward('/profils/'  + idUser) ; 
 }
+
+
+ajouterArticlefavoris( articledetails: Articles):void {
+
+  console.log(articledetails.categorie)
+
+  let ajout: boolean =false;
+  //si le pânier est vide
+
+  this.storage.get("favoris").then((data: favoris[]) => {
+    if(data===null || data.length===0)
+    {
+      data=[];
+      data.push({
+        produit: articledetails,
+      })
+    }
+
+    else{
+     
+      for (let i=0; i<data.length; i++)
+      {
+          //le panier n'est pas vide et contient deja notre element
+        const element: favoris= data[i];
+
+        console.log(element.produit.id)
+
+        if(articledetails.id === element.produit.id)
+        {
+          console.log('deja present')
+          //this.produitfavoris.splice(index, 1);
+          this.storage.set("favoris", this.produitfavoris)
+          ajout= true;
+        }
+      }
+          //le panier n'est pas vide et ne contient pas notre element
+
+          if(!ajout)
+          {
+            data.push({
+              produit: articledetails,
+            })
+          }
+
+        }
+
+        this.storage.set("favoris", data);
+        this.router.navigateByUrl('/favoris');
+  })
+  
+}
+
 
 }
 

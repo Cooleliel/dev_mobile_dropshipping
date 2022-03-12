@@ -66,6 +66,7 @@ console.log('ok');
                 this.toast.create({
                   message: "supprime",
                   duration: 2000,
+                  position: 'top'
                 });
               })
               .catch((err) => {

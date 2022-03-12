@@ -1,9 +1,10 @@
-<ion-card (click)="obtenirIdProduitC(produitCard.id)"><!--Ajout d'une carte--><!--appel de la fonction getProduitById() qui envoye des donnees lorsqu'on fait un clic-->
-  <img width="160px" height="100px" [src]="produitCard.image"><!--Ajout d'une image grace a la valeur d'attribut de l'objet produitCard-->
+<ion-card><!--Ajout d'une carte--><!--appel de la fonction getProduitById() qui envoye des donnees lorsqu'on fait un clic-->
+  <img width="160px" height="100px" [src]="produitCard.image" (click)="obtenirIdProduitC(produitCard.id)" ><!--Ajout d'une image grace a la valeur d'attribut de l'objet produitCard-->
   <ion-card-content>
     <ion-list>
       <ion-label>
         <p  id="produitPrice">  {{ produitCard.prix  }} FCFA</p><!--Affiche la valeur d'attribut de l'objet produitCard-->
+        <ion-icon name="heart-outline" (click)="ajouterArticlefavoris(produitCard)"></ion-icon>
       </ion-label>
       <ion-label slot="end"  *ngFor="let utilisateur of utilisateurs | async"  (click)="allerauprofil(publicateur)">
           {{ utilisateur.prenom }}

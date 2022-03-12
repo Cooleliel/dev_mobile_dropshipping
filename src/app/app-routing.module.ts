@@ -45,6 +45,11 @@ const routes: Routes = [
     loadChildren: () => import('./pages/panier/panier.module').then( m => m.PanierPageModule)
   },
   {
+
+    path: 'favoris',
+    loadChildren: () => import('./pages/favoris/favoris.module').then( m => m.FavorisPageModule)
+  },
+  {
     path: 'mes-produits',
     loadChildren: () => import('./pages/mes-produits/mes-produits.module').then( m => m.MesProduitsPageModule)
   },
