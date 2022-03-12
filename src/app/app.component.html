@@ -2,11 +2,11 @@
 
 
   <!--Declaration du contenu du menu principal-->
-  <ion-menu side="start" menuId="main-menu" contentId="main-menu-content">
+  <!--<ion-menu side="start" menuId="main-menu" contentId="main-menu-content">
     <ion-header>
       <ion-toolbar color="danger" >
         <ion-buttons>
-          <ion-button>
+          <ion-button [routerLink]="['tabs/compte']">
             <ion-icon slot="icon-only" name="person-circle"></ion-icon>
           </ion-button>
         </ion-buttons>
@@ -15,51 +15,100 @@
     <ion-content>
       <ion-list>
         <ion-menu-toggle>
-          <ion-item>
-            <ion-icon></ion-icon>
-            <ion-label>Accueil</ion-label>
+          <ion-item [routerLink]="['tabs/accueil']">
+            <ion-icon slot="start" name="home"></ion-icon>
+            <ion-label> Accueil</ion-label>
           </ion-item>
         </ion-menu-toggle>
         <ion-menu-toggle>
-          <ion-item>
-            <ion-icon></ion-icon>
+          <ion-item [routerLink]="['tabs/boutique']">
+            <ion-icon slot="start"  name="storefront"></ion-icon>
             <ion-label>Boutiques</ion-label>
           </ion-item>
         </ion-menu-toggle>
         <ion-menu-toggle>
-          <ion-item>
-            <ion-icon></ion-icon>
+          <ion-item [routerLink]="['categorie']">
+            <ion-icon slot="start"  name="albums"></ion-icon>
             <ion-label>Categories</ion-label>
           </ion-item>
         </ion-menu-toggle>
         <ion-menu-toggle>
-          <ion-item>
-            <ion-icon></ion-icon>
+          <ion-item [routerLink]="['panier']">
+            <ion-icon slot="start"  name="cart"></ion-icon>
             <ion-label>Panier</ion-label>
           </ion-item>
         </ion-menu-toggle>
         <ion-menu-toggle>
-          <ion-item>
-            <ion-icon></ion-icon>
-            <ion-label>Mes Produits</ion-label>
-          </ion-item>
-        </ion-menu-toggle>
-        <ion-menu-toggle>
-          <ion-item>
-            <ion-icon></ion-icon>
+          <ion-item [routerLink]="['tabs/favoris']">
+            <ion-icon slot="start" name="heart"></ion-icon>
             <ion-label>Favoris</ion-label>
           </ion-item>
         </ion-menu-toggle>
         <ion-menu-toggle>
-          <ion-item>
-            <ion-icon></ion-icon>
+          <ion-item [routerLink]="['tabs/favoris']">
+            <ion-icon slot="start" name="mail"></ion-icon>
             <ion-label>Message</ion-label>
           </ion-item>
         </ion-menu-toggle>
       </ion-list>
     </ion-content>
-  </ion-menu>
+  </ion-menu>-->
 <!---->
 
+  <ion-menu side="start" menuId="main-menu" contentId="main-menu-content">
+    <ion-content>
+      <div class="menu-header-bg"></div>
+      <div class="header-content">
+        <img src="../assets/images/original.jpg" alt="">
+        <ion-label>
+          <h2>Nom utilisateur</h2>
+          <p>Profession</p>
+        </ion-label>      
+      </div>
+      <div class="action-button">
+        <ion-button>
+          <ion-icon slot="start"  name="person-circle"></ion-icon>Voir profil
+        </ion-button>
+      </div>
+      <ion-list lines="none"  class="menu-items">
+        <ion-menu-toggle>
+          <ion-item [routerLink]="['tabs/accueil']" class="active">
+            <ion-icon slot="start" name="home"></ion-icon>
+            <ion-label> Accueil</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item [routerLink]="['tabs/boutique']">
+            <ion-icon slot="start"  name="storefront"></ion-icon>
+            <ion-label>Boutiques</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item [routerLink]="['categorie']">
+            <ion-icon slot="start"  name="albums"></ion-icon>
+            <ion-label>Categories</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item [routerLink]="['panier']">
+            <ion-icon slot="start"  name="cart"></ion-icon>
+            <ion-label>Panier</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item [routerLink]="['tabs/favoris']">
+            <ion-icon slot="start" name="heart"></ion-icon>
+            <ion-label>Favoris</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item [routerLink]="['tabs/favoris']">
+            <ion-icon slot="start" name="mail"></ion-icon>
+            <ion-label>Message</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list> 
+    </ion-content>
+  </ion-menu>
   <ion-router-outlet  id="main-menu-content"></ion-router-outlet>
 </ion-app>

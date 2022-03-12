@@ -5,6 +5,7 @@ import { Articles } from 'src/app/models/Articles.model';
 import { panier } from 'src/app/models/panier.model';
 import{ Storage } from '@ionic/storage';
 import { Router } from '@angular/router';
+import { LoadingController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-details',
@@ -15,7 +16,8 @@ export class DetailsPage implements OnInit {
   id: any;  //Declaration de variable qui va recevoir l'id du Articles
 
   articleD  = {}  as  Articles  ;//declaration d'un objet tableau de type Articles lie a la methode obtenirArticles //declaration d'un objet de type Articles lie a la methode obtenirIdProduit
-  constructor(  
+  constructor(private loadingCtrl:  LoadingController ,
+    private toastCtrl:  ToastController ,  
     private activatedRoute: ActivatedRoute  ,
     private firestore: AngularFirestore  ,
     public storage: Storage,
@@ -30,23 +32,27 @@ export class DetailsPage implements OnInit {
 
   
   //Declarations de la fonction obtenirProduitId qui permet d'avoir les produits par leur id
-  obtenirProduitParId(id: string){
-   this.firestore
-   .doc('articles/' + id)
-   .valueChanges()
-   .subscribe(data  =>  {
-     this.articleD.id= id;
-     this.articleD.categorie = data['categorie'] ;
-     this.articleD.description = data['description'] ;
-     this.articleD.prix = data['prix'] ;
-     this.articleD.image = data['image'] ;
-   })  ;
+  async obtenirProduitParId(id: string){
+    let loader  = await this.loadingCtrl.create({
+      message:  'Patienter s\'il vous plait ....'
+    })  ;
+  
+    loader.present()  ;
+    this.firestore
+    .doc('articles/' + id)
+    .valueChanges()
+    .subscribe(data  =>  {
+      this.articleD.id= id;
+      this.articleD.categorie = data['categorie'] ;
+      this.articleD.description = data['description'] ;
+      this.articleD.prix = data['prix'] ;
+      this.articleD.image = data['image'] ;
+    })  ;
+    loader.dismiss()  ;
   }
 
 
-  ajouterArticleAuPanier( articledetails: Articles):void {
-
-    console.log(articledetails.categorie)
+  ajouterArticleAuPanier( articledetails: Articles) {
 
     let ajout: boolean =false;
     //si le pânier est vide
@@ -100,6 +106,4 @@ export class DetailsPage implements OnInit {
     })
     
   }
-
-
 }

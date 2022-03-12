@@ -2,10 +2,8 @@ import { Component, OnInit, } from '@angular/core';
 import { Router } from '@angular/router';
 import { Articles } from 'src/app/models/Articles.model';
 import { Categorie } from 'src/app/models/categorie.model';
-import { CategorieService } from 'src/app/services/categorie.service';
-import { ProduitService } from 'src/app/services/produit.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { NavController } from '@ionic/angular';
+import { LoadingController, NavController, ToastController } from '@ionic/angular';
 @Component({
   selector: 'app-accueil',
   templateUrl: './accueil.page.html',
@@ -26,7 +24,7 @@ export class AccueilPage  implements  OnInit{
     slidesOffsetBefore: 6
 
   } ;
-  constructor(private router: Router,private firestore: AngularFirestore  , private navCtrl:  NavController)  {
+  constructor(private loadingCtrl:  LoadingController ,private toastCtrl:  ToastController ,private router: Router,private firestore: AngularFirestore  , private navCtrl:  NavController)  {
   }
   ngOnInit()  {
     this.obtenirCategories();
@@ -55,44 +53,70 @@ export class AccueilPage  implements  OnInit{
     this.router.navigate(['compte'])  ;
   }
 
-  obtenirCategories() : Categorie[] {
-    this.firestore
-    .collection('categorie')
-    .snapshotChanges()
-    .subscribe( data  =>  {
+  async obtenirCategories(){
+    let loader  = await this.loadingCtrl.create({
+      message:  'Patienter s\'il vous plait ....'
+    })  ;
 
-      this.categoriesSlides  = data.map( e =>  {
-        return  {
-          id: e.payload.doc.id  ,
-          titre:  e.payload.doc.data()['titre'],
-          image:  e.payload.doc.data()['image']
+    loader.present()  ;
+    try {
+      this.firestore
+      .collection('categorie')
+      .snapshotChanges()
+      .subscribe( data  =>  {
 
-        };
-      });
-    }) ; 
+        this.categoriesSlides  = data.map( e =>  {
+          return  {
+            id: e.payload.doc.id  ,
+            titre:  e.payload.doc.data()['titre'],
+            image:  e.payload.doc.data()['image']
 
-    return this.categoriesSlides;
+          };
+        });
+        loader.dismiss()  ;
+      }) ;
+    }catch(e) {
+      this.messageAttente(e) ;
+    } 
   }
-  obtenirArticles() {
-    this.firestore
-    .collection('articles')
-    .snapshotChanges()
-    .subscribe( data  =>  {
+  async obtenirArticles() {
+    let loader  = await this.loadingCtrl.create({
+      message:  'Patienter s\'il vous plait ....'
+    })  ;
 
-      this.articlesA  = data.map( e =>  {
-        return  {
-          id: e.payload.doc.id  ,
+    loader.present()  ;
+    try {
+      this.firestore
+      .collection('articles')
+      .snapshotChanges()
+      .subscribe( data  =>  {
 
-          user_id:  e.payload.doc.data()['user_id'] ,
-          categorie:  e.payload.doc.data()['categorie'] ,
-          description:  e.payload.doc.data()['description'],
-          prix:  e.payload.doc.data()['prix'],
-          stock:  e.payload.doc.data()['stock'],
-          image:  e.payload.doc.data()['image']
+        this.articlesA  = data.map( e =>  {
+          return  {
+            id: e.payload.doc.id  ,
 
-        };
-      });
-    }) ; 
+            user_id:  e.payload.doc.data()['user_id'] ,
+            categorie:  e.payload.doc.data()['categorie'] ,
+            description:  e.payload.doc.data()['description'],
+            prix:  e.payload.doc.data()['prix'],
+            stock:  e.payload.doc.data()['stock'],
+            image:  e.payload.doc.data()['image']
+
+          };
+        });
+        loader.dismiss()  ;
+      }) ;
+    }catch(e) {
+      this.messageAttente(e) ;
+    }  
+  }
+
+  messageAttente(message:  string) {
+    this.toastCtrl.create({
+      message:  message ,
+
+      duration: 2000
+    }).then(toastData =>  toastData.present())  ;
   }
 
 }
