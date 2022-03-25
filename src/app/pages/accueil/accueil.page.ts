@@ -100,8 +100,8 @@ export class AccueilPage  implements  OnInit{
             description:  e.payload.doc.data()['description'],
             prix:  e.payload.doc.data()['prix'],
             stock:  e.payload.doc.data()['stock'],
-            image:  e.payload.doc.data()['image']
-
+            image:  e.payload.doc.data()['image'],
+            liked: e.payload.doc.data()['liked'], 
           };
         });
         loader.dismiss()  ;

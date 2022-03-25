@@ -13,8 +13,10 @@ import { LoadingController, ToastController } from '@ionic/angular';
   styleUrls: ['./details.page.scss'],
 })
 export class DetailsPage implements OnInit {
-  id: any;  //Declaration de variable qui va recevoir l'id du Articles
-
+  public user_id: string;
+  public status: string;
+  id: any;
+  myFlag: boolean;
   articleD  = {}  as  Articles  ;//declaration d'un objet tableau de type Articles lie a la methode obtenirArticles //declaration d'un objet de type Articles lie a la methode obtenirIdProduit
   constructor(private loadingCtrl:  LoadingController ,
     private toastCtrl:  ToastController ,  
@@ -49,6 +51,43 @@ export class DetailsPage implements OnInit {
       this.articleD.image = data['image'] ;
     })  ;
     loader.dismiss()  ;
+
+    this.storage.get('user_id').then((value)=> {
+      if(value.length>0)
+      {
+     this.activatedRoute.params.subscribe((params) => {
+        this.id = params['id'];
+        this.myFlag = this.id == "false";
+        console.log(this.myFlag);
+        this.storage.get('user_id').then((value)=> {this.user_id=value; 
+        
+          if(value == id)
+          {
+               console.log("utilisateur");
+          }
+
+          else
+          {
+               console.log("non utilisateur");
+          }
+        
+        });
+        console.log(this.user_id);
+    });
+
+  }
+
+  else
+
+  {
+    this.activatedRoute.params.subscribe((params) => {
+      this.id = params['id'];
+      this.myFlag = this.id == "null";
+      console.log(this.myFlag);
+  });
+  }
+
+})
   }
 
 

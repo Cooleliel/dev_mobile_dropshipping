@@ -7,4 +7,5 @@ export interface Articles{
     stock:  string;
     prix: any;
     image:  string;  
+    liked: boolean;
 }

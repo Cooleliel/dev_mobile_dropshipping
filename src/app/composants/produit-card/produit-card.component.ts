@@ -22,6 +22,7 @@ import { Router } from '@angular/router';
 })
 export class ProduitCardComponent {
   @Input()  produitCard:  Articles;//declaration d'objet de type Produit en entree(recoit des donnees de son composant parent)
+  @Input() index: number;
   @Output() clicProdC = new EventEmitter();//declaration de variable emettant un evenement en sortie(transmet des donnees a son composant parent) 
 
   produitfavoris: favoris[];
@@ -30,12 +31,18 @@ export class ProduitCardComponent {
   articles: Observable<any[]>;
   utilisateurs: Observable<any[]>;
   public user_concerné: string;
+  public counter: number=0;
   public username: string;
   public user_email: string;
   public user_prenom: string;
   public user_number: string;
   public user_id: string;
   public publicateur: string;
+  public fav: boolean;
+  public fav2: boolean;
+  produitFavoris: favoris[] = [];
+
+  x= 5;
 
   //la fonction getProduitById() utilise la variable de soirte clicked pour declencher un evenement avec la valeur idProduit
   obtenirIdProduitC(idProduit: string)  {
@@ -68,16 +75,43 @@ ngOnInit() {
        this.utilisateurs= this.firestore.collection('utilisateurs', ref => ref.where(documentId(), '==',data4.payload.doc.data()['user_id'])).valueChanges(); 
        this.firestore.collection('utilisateurs', ref => ref.where(documentId(), '==',data4.payload.doc.data()['user_id'])).snapshotChanges().subscribe(data => {
          data.forEach(data1 => {
-          console.log('ok');
-          console.log(data1.payload.doc.id);
+         // console.log('ok');
+          //console.log(data1.payload.doc.id);
           this.publicateur=data1.payload.doc.id;
          })
        })
-       console.log(this.utilisateurs);
+       //console.log(this.utilisateurs);
       }); 
   });
 
-   this.articles = this.firestore.collection('articles', ref => ref.where('user_id', '==', this.produitCard.user_id)).valueChanges();          
+   this.articles = this.firestore.collection('articles', ref => ref.where('user_id', '==', this.produitCard.user_id)).valueChanges();   
+   this.storage.get("favoris")
+   .then((data : favoris[]) =>{
+    this.produitFavoris = data;
+    })
+    .catch((err) => {
+     console.log("erreur", err);
+   })
+   //console.log(this.articles)
+
+   this.articles.forEach(article => {
+    article.forEach(art => {
+        this.produitCard.liked = false;
+       this.produitFavoris.forEach(produit => {
+         //console.log(this.produitCard.id);
+         //console.log(produit.produit.id);
+          if (produit.produit.id === this.produitCard.id) {
+            this.produitCard.liked = true;
+           // console.log(art);    
+          }
+       });
+       //console.log(art);
+     });
+   });
+   // console.log(this.produitFavoris);
+
+   console.log(this.produitCard)
+   console.log(this.index)
 
 }
 
@@ -132,11 +166,10 @@ ajouterArticlefavoris( articledetails: Articles):void {
         }
 
         this.storage.set("favoris", data);
-        this.router.navigateByUrl('/favoris');
+        this.router.navigateByUrl('tabs/favoris');
   })
   
 }
-
 
 }
 

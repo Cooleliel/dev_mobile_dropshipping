@@ -13,15 +13,16 @@
 
 <ion-card>
   <div class="image">
-    <img  [src]="articleD.image">
+    <img style="width: 400px; height: 250px;" [src]="articleD.image">
   </div>
 
   <ion-card-header>
-    <ion-card-title> </ion-card-title>
-    <ion-card-subtitle>  <sup>{{articleD.id}}xof</sup>  </ion-card-subtitle>
-  
+    <ion-card-title> <h3>{{articleD.categorie}}</h3> </ion-card-title>
+    <br><br>
   </ion-card-header>
   <ion-card-content>
+
+    <ion-card-subtitle> <h3 style="font-size: 20px;">{{articleD.prix}} FCFA </h3></ion-card-subtitle>
     
     <div class="rates">
       <app-badge  icone="time" texte="30m"></app-badge>
@@ -30,7 +31,9 @@
     </div>
     <div class="about">
       <h1>Description</h1>
+      <br>
       <p>{{articleD.description}}</p>
+      <br><br>
       <app-button (click)="ajouterArticleAuPanier(articleD)">Ajouter au panier</app-button>
     </div>
  </ion-card-content>

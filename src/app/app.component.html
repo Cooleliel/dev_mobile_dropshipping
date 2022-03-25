@@ -2,18 +2,48 @@
   <ion-menu side="start" menuId="main-menu" contentId="main-menu-content">
     <ion-content>
       <div class="menu-header-bg"></div>
+
+    <div *ngIf="myFlag != null;else elseCondition">
+
       <div class="header-content">
-        <img src="../assets/images/original.jpg" alt="">
+        <img src="../assets/images/image12.png" alt="">
         <ion-label>
-          <h2>Nom utilisateur</h2>
-          <p>Profession</p>
+          <h2>{{username}} {{user_prenom}}</h2>
+          <p>{{user_email}}</p>
         </ion-label>      
       </div>
       <div class="action-button">
-        <ion-button [routerLink]="['profils'  , idUser]">
+        <ion-menu-toggle>
+        <ion-button [routerLink]="['tabs/compte']">
           <ion-icon slot="start"  name="person-circle"></ion-icon>Voir profil
         </ion-button>
+      </ion-menu-toggle>
       </div>
+
+    </div>
+
+  <ng-template #elseCondition>
+    <div class="header-content">
+      <h6 style="text-align: center; font-weight: bold; color: white">Veuillez vous connecter ou vous inscrire!</h6>
+    </div>
+      <div class="action-button">
+        <ion-menu-toggle>
+        <ion-button [routerLink]="['login']">
+          <ion-icon slot="start"  name="person-circle"></ion-icon>Se connecter
+        </ion-button>
+      </ion-menu-toggle>
+      </div>
+
+      <div class="action-button2">
+        <ion-menu-toggle>
+        <ion-button [routerLink]="['inscription']">
+          <ion-icon slot="start"  name="create"></ion-icon>S'inscrire
+        </ion-button>
+      </ion-menu-toggle>
+      </div>
+
+    </ng-template>    
+
       <ion-list lines="none"  class="menu-items">
         <ion-menu-toggle>
           <ion-item [routerLink]="['tabs/accueil']" class="active">

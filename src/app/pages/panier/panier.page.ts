@@ -104,8 +104,9 @@ console.log('ok');
           element.prix+= ajoutarticle.prix;
           this.storage.set("panier", data)         
           .then((data) => {
-            this.total=this.total+ajoutarticle.prix;
-          });      
+            this.total + ajoutarticle.prix;
+            this.total== this.total;
+          })     
         }
       }
       setInterval(()=> {
