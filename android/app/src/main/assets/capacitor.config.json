@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "dropshipping_app",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}
