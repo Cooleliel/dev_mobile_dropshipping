@@ -17,6 +17,10 @@ nombretotal : number=0;
 
   ngOnInit() {
 
+    this.storage.get('user_id').then((value)=> {
+      if(value.length>0)
+      {
+
     this.storage.get("panier")
     .then((data : panier[]) =>{
      this.produitPanier = data;
@@ -35,6 +39,9 @@ nombretotal : number=0;
     })
 
   }
+
+}
+)}
 
 
   async removeitem(article: panier, index: number):Promise<void> {
@@ -105,7 +112,7 @@ console.log('ok');
           this.storage.set("panier", data)         
           .then((data) => {
             this.total + ajoutarticle.prix;
-            this.total== this.total;
+            this.total= this.total
           })     
         }
       }

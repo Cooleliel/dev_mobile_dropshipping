@@ -25,8 +25,8 @@ Article:Observable<any>;
 
   supprimer(id: string){
     return this.firestore.collection('Article').doc(id).delete();
-
   }
+  
   lireun(id: string): Observable<any>{
     return this.firestore.collection('Article').doc(id).snapshotChanges();
   }

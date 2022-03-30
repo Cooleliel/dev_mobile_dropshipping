@@ -8,13 +8,15 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AuthService } from '../../Service/auth.service';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
-import { LoadingController, AlertController, ToastController, NavController } from '@ionic/angular';
+import { LoadingController, AlertController, ToastController, NavController, ModalController } from '@ionic/angular';
 import { AngularFirestore} from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs/internal/Observable';
 import { doc, documentId } from 'firebase/firestore';
 import { panier } from 'src/app/models/panier.model';
 import { favoris } from 'src/app/models/favoris.model';
 import { Router } from '@angular/router';
+import { ConnectPagePage } from 'src/app/pages/connect-page/connect-page.page';
+
 @Component({
   selector: 'app-produit-card',
   templateUrl: './produit-card.component.html',
@@ -43,6 +45,8 @@ export class ProduitCardComponent {
   produitFavoris: favoris[] = [];
 
   x= 5;
+  myFlag: boolean;
+  id: any;
 
   //la fonction getProduitById() utilise la variable de soirte clicked pour declencher un evenement avec la valeur idProduit
   obtenirIdProduitC(idProduit: string)  {
@@ -63,6 +67,7 @@ export class ProduitCardComponent {
     public afDB: AngularFireDatabase,
     public navCtrl: NavController,
     public router: Router,
+    public modalController: ModalController
 
     ){}
 
@@ -93,6 +98,17 @@ ngOnInit() {
      console.log("erreur", err);
    })
    //console.log(this.articles)
+   //this.produitCard.liked = false;
+
+
+   this.storage.get('user_id').then((value)=> {
+    if(value.length>0)
+    {
+
+      this.activatedRoute.params.subscribe((params) => {
+        this.id = params['id'];
+        this.myFlag = this.id == "false";
+      })
 
    this.articles.forEach(article => {
     article.forEach(art => {
@@ -113,6 +129,17 @@ ngOnInit() {
    console.log(this.produitCard)
    console.log(this.index)
 
+  }
+
+  else{
+    this.activatedRoute.params.subscribe((params) => {
+      this.id = params['id'];
+      this.myFlag = this.id == "null";
+      console.log(this.myFlag);
+  });
+  }
+
+})
 }
 
 allerauprofil(idUser: string)  {
@@ -169,6 +196,20 @@ ajouterArticlefavoris( articledetails: Articles):void {
         this.router.navigateByUrl('tabs/favoris');
   })
   
+}
+
+doRefresh(event){
+
+  window.location.reload();
+ }
+
+ async presentModal() {
+  const modal = await this.modalController.create({
+    component: ConnectPagePage,
+    breakpoints: [0, 0.3, 0.5, 0.8],
+    initialBreakpoint: 0.5
+  });
+  await modal.present();
 }
 
 }

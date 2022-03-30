@@ -7,7 +7,7 @@
       </ion-buttons>
 
       <ion-buttons  slot="end">
-        <ion-button>
+        <ion-button routerLink="/panier">
           <ion-icon slot="icon-only"  name="cart-sharp"></ion-icon>
 
         </ion-button>
@@ -22,13 +22,22 @@
   </ion-header>
   <ion-content  [fullscreen]>
 
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content
+        pullingIcon="chevron-down-circle-outline"
+        pullingText="Pull to refresh"
+        refreshingSpinner="circles"
+        refreshingText="Refresh...">
+      </ion-refresher-content>
+    </ion-refresher> 
+
     <ion-grid>
 
       <ion-row size="10">
         <ion-col size="6" *ngFor="let article of produitFavoris; let i=index">
           <div>
             <ion-card>
-              <img width="160" height="100" [src]="article.produit.image"/>
+              <img width="160" height="100" [src]="article.produit.image"  (click)="obtenirIdProduitC(article.produit.id)"/>
               <ion-card-header>
                 <ion-card-subtitle style="color: red;" >{{article.produit.prix}}FCFA</ion-card-subtitle>
                 <strong><h6 style="color: black;">{{article.produit.categorie}}</h6> <ion-icon style="color: rgb(250, 0, 196)" name="heart" (click)="removefavoris(article, i)"></ion-icon> </strong>

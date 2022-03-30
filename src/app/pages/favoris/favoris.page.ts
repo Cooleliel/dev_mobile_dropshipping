@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { favoris } from 'src/app/models/favoris.model';
 import{ Storage } from '@ionic/storage';
 import { Router } from '@angular/router';
@@ -9,14 +9,22 @@ import { AlertController, ModalController,ToastController,LoadingController } fr
   styleUrls: ['./favoris.page.scss'],
 })
 export class FavorisPage implements OnInit {
-
+  @Output() clicProdC = new EventEmitter();
   produitFavoris: favoris[];
+
+  obtenirIdProduitC(idProduit: string)  {
+    this.clicProdC.emit(idProduit)  ;
+  }
 
   constructor(
     public storage: Storage,private toast: ToastController, public alertCtrl: AlertController, public router: Router, public loadingctrl: LoadingController
   ) { }
 
   ngOnInit() {
+
+    this.storage.get('user_id').then((value)=> {
+      if(value.length>0)
+      {
 
     this.storage.get("favoris")
     .then((data : favoris[]) =>{
@@ -26,6 +34,9 @@ export class FavorisPage implements OnInit {
       console.log("erreur", err);
     })
      console.log(this.produitFavoris);
+
+  }
+})
   }
 
 
@@ -62,6 +73,11 @@ export class FavorisPage implements OnInit {
 
     await alert.present();  
 }
+
+doRefresh(event){
+
+  window.location.reload();
+ }
 
 
 }

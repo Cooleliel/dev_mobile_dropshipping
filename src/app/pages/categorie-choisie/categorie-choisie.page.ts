@@ -121,4 +121,9 @@ export class CategorieChoisiePage implements OnInit {
     }).then(toastData =>  toastData.present())  ;
   }
 
+  doRefresh(event){
+
+    window.location.reload();
+   }
+
 }

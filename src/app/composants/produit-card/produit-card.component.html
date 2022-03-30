@@ -1,10 +1,19 @@
 <ion-card><!--Ajout d'une carte--><!--appel de la fonction getProduitById() qui envoye des donnees lorsqu'on fait un clic-->
-  <img width="160px" height="100px" [src]="produitCard.image" (click)="obtenirIdProduitC(produitCard.id)  " ><!--Ajout d'une image grace a la valeur d'attribut de l'objet produitCard-->
+  <img width="160px" height="100px" [src]="produitCard.image" (click)="obtenirIdProduitC(produitCard.id)" ><!--Ajout d'une image grace a la valeur d'attribut de l'objet produitCard-->
   <ion-card-content>
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content
+        pullingIcon="chevron-down-circle-outline"
+        pullingText="Pull to refresh"
+        refreshingSpinner="circles"
+        refreshingText="Refreshing...">
+      </ion-refresher-content>
+    </ion-refresher>
     <ion-list>
       <ion-label>
         <p  id="produitPrice">{{index}} {{ produitCard.prix  }} FCFA</p><!--Affiche la valeur d'attribut de l'objet produitCard-->
-  
+      
+      <div *ngIf="myFlag != null;else elseCondition">
       <ion-label *ngIf="produitCard.liked">
         <ion-icon style=" color: pink;" name="heart" (click)="ajouterArticlefavoris(produitCard)"></ion-icon>
       </ion-label>
@@ -12,6 +21,17 @@
       <ion-label *ngIf="!produitCard.liked">
         <ion-icon name="heart-outline" (click)="ajouterArticlefavoris(produitCard)"></ion-icon>
       </ion-label>
+      </div>
+
+      <ng-template #elseCondition>
+        <ion-label *ngIf="produitCard.liked">
+          <ion-icon style=" color: pink;" name="heart" (click)="presentModal()"></ion-icon>
+        </ion-label>
+  
+        <ion-label *ngIf="!produitCard.liked">
+          <ion-icon name="heart-outline" (click)="presentModal()"></ion-icon>
+        </ion-label>
+      </ng-template> 
 
       </ion-label>
       <ion-label slot="end"  *ngFor="let utilisateur of utilisateurs | async">

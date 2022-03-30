@@ -63,4 +63,10 @@ export class ProduitPage implements OnInit {
     }).then(toastData =>  toastData.present())  ;
   }
 
+  doRefresh(event){
+
+    window.location.reload();
+   }
+  
+
 }

@@ -55,4 +55,10 @@ export class CategoriePage implements OnInit {
       duration: 2000
     }).then(toastData =>  toastData.present())  ;
   }
+
+  doRefresh(event){
+
+    window.location.reload();
+   }
+
 }

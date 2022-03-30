@@ -5,15 +5,19 @@ import { AngularFirestore,  AngularFirestoreCollection } from '@angular/fire/com
 //import { collection, query, where } from "firebase/firestore";
 import { Router } from "@angular/router";
 import{ Storage } from '@ionic/storage';
+import { ActivatedRoute } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   user: any;
+  public interdiction: boolean=false;
   collection: AngularFirestoreCollection<unknown>;
+  id: any;
+  myFlag: boolean=true;
   constructor(
-    private angularFireAuth: AngularFireAuth, public firestore: AngularFirestore,private router: Router, public storage: Storage
+    private angularFireAuth: AngularFireAuth, public firestore: AngularFirestore,private router: Router, public storage: Storage, public activatedRoute: ActivatedRoute
   ) 
   {}
 
@@ -80,18 +84,14 @@ console.log(value.email);
       else
       {
         console.log('rien');
+        this.activatedRoute.params.subscribe((params) => {
+          this.id = params['id'];
+          this.myFlag = this.id == "null";
+          console.log(this.myFlag);
+      });
         this.router.navigate(['/login'],{queryParams: {errorMsg:1}});
-      }
+       }
     })
-
-/*
-   return new Promise<any>((resolve, reject) => {
-      this.angularFireAuth.signInWithEmailAndPassword(value.email, value.password)
-        .then(
-          res => resolve(res),
-          err => reject(err))
-    })
-*/
   }
 
 

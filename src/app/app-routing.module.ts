@@ -65,6 +65,14 @@ const routes: Routes = [
     path: 'profils/:idUser',
     loadChildren: () => import('./pages/profils/profils.module').then( m => m.ProfilsPageModule)
   },
+  {
+    path: 'modifierarticle',
+    loadChildren: () => import('./pages/modifierarticle/modifierarticle.module').then( m => m.ModifierarticlePageModule)
+  },
+  {
+    path: 'connect-page',
+    loadChildren: () => import('./pages/connect-page/connect-page.module').then( m => m.ConnectPagePageModule)
+  },
 ];
 
 @NgModule({

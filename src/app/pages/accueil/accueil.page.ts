@@ -1,5 +1,5 @@
 import { Component, OnInit, } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { Articles } from 'src/app/models/Articles.model';
 import { Categorie } from 'src/app/models/categorie.model';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
@@ -24,6 +24,7 @@ export class AccueilPage  implements  OnInit{
     slidesOffsetBefore: 6
 
   } ;
+  navigationSubscription: any;
   constructor(private loadingCtrl:  LoadingController ,private toastCtrl:  ToastController ,private router: Router,private firestore: AngularFirestore  , private navCtrl:  NavController)  {
   }
   ngOnInit()  {
@@ -118,5 +119,11 @@ export class AccueilPage  implements  OnInit{
       duration: 2000
     }).then(toastData =>  toastData.present())  ;
   }
+
+  doRefresh(event){
+
+   window.location.reload();
+  }
+
 
 }

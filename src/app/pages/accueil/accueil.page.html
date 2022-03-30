@@ -26,6 +26,16 @@
     </ion-toolbar>
   </ion-header>
   <ion-content [fullscreen]="true">
+
+      <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content
+          pullingIcon="chevron-down-circle-outline"
+          pullingText="Pull to refresh"
+          refreshingSpinner="circles"
+          refreshingText="Refreshing...">
+        </ion-refresher-content>
+      </ion-refresher>
+
     <!--Section categories-->
     <app-accueil-slide-header titre="Categories"  (click)="redirigerVersPageCategorie()"></app-accueil-slide-header><!--Appel de la vue app-accueil-slide-header(html) qui est un composant et qui recoit une chaine de caracteres--->
 

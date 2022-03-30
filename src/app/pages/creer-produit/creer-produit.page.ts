@@ -9,8 +9,9 @@ import { AuthService } from '../../Service/auth.service';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
-import { LoadingController, AlertController } from '@ionic/angular';
+import { LoadingController, AlertController, ToastController } from '@ionic/angular';
 import { getStorage, ref } from "firebase/storage";
+import { Categorie } from 'src/app/models/categorie.model';
 @Component({
   selector: 'app-creer-produit',
   templateUrl: './creer-produit.page.html',
@@ -24,19 +25,22 @@ export class CreerProduitPage implements OnInit {
   public user_number: string;
   public user_id: string;
   public status: string;
+  categoriesSlides: Categorie[] =  [];
   id: any;
   myFlag: boolean;
   userForm: FormGroup;
-  image = 'https://www.kasterencultuur.nl/editor/placeholder.jpg';
+  image = 'assets/images/imagevide.jpg';
   imagePath: string;
   upload: any;
   url: string;
   path: string;
   test: string;
 
-  constructor(private router: Router, public storage: Storage, private activatedRoute: ActivatedRoute,private angularFireAuth: AngularFireAuth, public firestore: AngularFirestore,private fb: FormBuilder, private AuthService: AuthService, private camera: Camera,public loadingController: LoadingController,public alertController: AlertController, public afSG: AngularFireStorage, public afDB: AngularFireDatabase) { }
+  constructor(private loadingCtrl:  LoadingController,private router: Router, public storage: Storage,private toastCtrl:  ToastController, private activatedRoute: ActivatedRoute,private angularFireAuth: AngularFireAuth, public firestore: AngularFirestore,private fb: FormBuilder, private AuthService: AuthService, private camera: Camera,public loadingController: LoadingController,public alertController: AlertController, public afSG: AngularFireStorage, public afDB: AngularFireDatabase) { }
 
   ngOnInit() {
+
+    this.obtenirCategories();
 
     this.userForm = this.fb.group({
       categorie: new FormControl('', Validators.compose([
@@ -52,7 +56,7 @@ export class CreerProduitPage implements OnInit {
         Validators.required,
       ])),
       id_user: new FormControl('', Validators.compose([
-        Validators.required,
+      
       ])),
     });
 
@@ -63,6 +67,7 @@ export class CreerProduitPage implements OnInit {
         this.id = params['id'];
         this.myFlag = this.id == "false";
         console.log(this.myFlag);
+        console.log(this.categoriesSlides);
         this.storage.get('user_name').then((value)=> {this.username=value; });
         this.storage.get('user_email').then((value)=> {this.user_email=value; });
         this.storage.get('user_second_name').then((value)=> {this.user_prenom=value; });
@@ -72,6 +77,33 @@ export class CreerProduitPage implements OnInit {
       }
   })
 
+}
+
+async obtenirCategories(){
+  let loader  = await this.loadingCtrl.create({
+    message:  'Patienter s\'il vous plait ....'
+  })  ;
+
+  loader.present()  ;
+  try {
+    this.firestore
+    .collection('categorie')
+    .snapshotChanges()
+    .subscribe( data  =>  {
+
+      this.categoriesSlides  = data.map( e =>  {
+        return  {
+          id: e.payload.doc.id  ,
+          titre:  e.payload.doc.data()['titre'],
+          image:  e.payload.doc.data()['image']
+
+        };
+      });
+      loader.dismiss()  ;
+    }) ;
+  }catch(e) {
+    this.messageAttente(e) ;
+  } 
 }
 
   async creation(value) {
@@ -87,7 +119,7 @@ export class CreerProduitPage implements OnInit {
       await loading.onDidDismiss();
       const alert = await this.alertController.create({
         header: 'Félicitation',
-        message: 'L\'envoi de la photo dans Firebase est terminé!',
+        message: 'L\'article a été publié!',
         buttons: ['OK']
       });
 
@@ -144,9 +176,18 @@ async openCamera() {
   return await this.camera.getPicture(options);
 }
 
-doRefresh(event) {  
-  console.log('Pull Event Triggered!');  
-}  
+doRefresh(event){
+
+  window.location.reload();
+ }
+ 
+messageAttente(message:  string) {
+  this.toastCtrl.create({
+    message:  message ,
+
+    duration: 2000
+  }).then(toastData =>  toastData.present())  ;
+}
 
 }
 

@@ -8,7 +8,7 @@ import { AuthService } from '../../Service/auth.service';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
-import { LoadingController, AlertController } from '@ionic/angular';
+import { LoadingController, AlertController, ToastController  } from '@ionic/angular';
 import { AngularFirestore,  AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs/internal/Observable';
 import { documentId } from 'firebase/firestore';
@@ -46,16 +46,26 @@ export class ComptePage implements OnInit {
      public alertController: AlertController, 
      public afSG: AngularFireStorage,
      public afDB: AngularFireDatabase,
-     public navCtrl: NavController
+     public navCtrl: NavController, 
+     public toastCtrl: ToastController
      
      ) 
      { }
 
   ngOnInit() {
 
-    const loading = this.loadingController.create({
-      duration: 2000
-    });
+    this.getprofil();
+
+  }
+
+  async getprofil(){
+
+    let loader  = await this.loadingController.create({
+      message:  'Patienter s\'il vous plait ....'
+    })  ;
+
+    loader.present()  ;
+    try {
 
     this.storage.get('user_id').then((value)=> {
       if(value.length>0)
@@ -105,11 +115,24 @@ export class ComptePage implements OnInit {
           console.log(this.myFlag);
       });
       }
-     });
 
+     });
+     loader.dismiss()  ;
+    }
+    catch(e) {
+      this.messageAttente(e) ;
+    } 
   }
 
-  disconnect(){
+  async disconnect(){
+
+    let loader  = await this.loadingController.create({
+      message:  'Patienter s\'il vous plait ....'
+    })  ;
+
+    loader.present()  ;
+    try {
+
     this.storage.remove('user_name');
     this.storage.remove('user_email');
     this.storage.remove('user_second_name');
@@ -117,7 +140,11 @@ export class ComptePage implements OnInit {
     this.storage.remove('user_number');
 
     this.router.navigate(['/login']);
-
+    loader.dismiss();
+  }
+  catch(e) {
+    this.messageAttente(e) ;
+  } 
   }
 
 
@@ -127,5 +154,20 @@ export class ComptePage implements OnInit {
       //this.router.navigate(['profils' , idUser])
       this.navCtrl.navigateForward('/profils/'  + idUser) ; 
     }
+
+    messageAttente(message:  string) {
+      this.toastCtrl.create({
+        message:  message ,
+  
+        duration: 2000
+      }).then(toastData =>  toastData.present())  ;
+    }
+
+
+    doRefresh(event){
+
+      window.location.reload();
+     }
+  
 
 }

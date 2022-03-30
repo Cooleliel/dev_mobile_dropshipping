@@ -62,7 +62,6 @@ this.AuthService.getsession().then(data =>{
     }); 
 });
  this.articles = this.firestore.collection('articles', ref => ref.where('user_id', '==', data)).valueChanges();       
-
 });
   
   }
@@ -78,5 +77,10 @@ this.AuthService.getsession().then(data =>{
       //this.router.navigate(['profils' , idUser])
       this.navCtrl.navigateForward('/profils/'  + idUser) ; 
     }
+
+    doRefresh(event){
+
+      window.location.reload();
+     }
 
 }

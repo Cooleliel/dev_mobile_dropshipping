@@ -87,4 +87,10 @@ export class ProfilsPage implements OnInit {
       this.users.number = data['numero'] ;
     })  ;
    }
+
+   doRefresh(event){
+
+    window.location.reload();
+   }
+  
  }

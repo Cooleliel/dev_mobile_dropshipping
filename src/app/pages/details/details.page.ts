@@ -5,8 +5,8 @@ import { Articles } from 'src/app/models/Articles.model';
 import { panier } from 'src/app/models/panier.model';
 import{ Storage } from '@ionic/storage';
 import { Router } from '@angular/router';
-import { LoadingController, ToastController } from '@ionic/angular';
-
+import { LoadingController, ToastController, AlertController, ModalController } from '@ionic/angular';
+import { ConnectPagePage } from 'src/app/pages/connect-page/connect-page.page';
 @Component({
   selector: 'app-details',
   templateUrl: './details.page.html',
@@ -18,12 +18,18 @@ export class DetailsPage implements OnInit {
   id: any;
   myFlag: boolean;
   articleD  = {}  as  Articles  ;//declaration d'un objet tableau de type Articles lie a la methode obtenirArticles //declaration d'un objet de type Articles lie a la methode obtenirIdProduit
+  utilisateur: boolean;
+  id2: any;
+  
   constructor(private loadingCtrl:  LoadingController ,
     private toastCtrl:  ToastController ,  
     private activatedRoute: ActivatedRoute  ,
     private firestore: AngularFirestore  ,
     public storage: Storage,
-    public router: Router
+    public router: Router, 
+    public toast: ToastController,
+    public alertCtrl: AlertController,
+    public modalController: ModalController,
     ) { 
     this.id = this.activatedRoute.snapshot.paramMap.get('id');//recuperation de l'id
   }
@@ -45,6 +51,7 @@ export class DetailsPage implements OnInit {
     .valueChanges()
     .subscribe(data  =>  {
       this.articleD.id= id;
+      this.articleD.user_id= data['user_id'];
       this.articleD.categorie = data['categorie'] ;
       this.articleD.description = data['description'] ;
       this.articleD.prix = data['prix'] ;
@@ -60,15 +67,24 @@ export class DetailsPage implements OnInit {
         this.myFlag = this.id == "false";
         console.log(this.myFlag);
         this.storage.get('user_id').then((value)=> {this.user_id=value; 
-        
-          if(value == id)
+        console.log(value);
+        console.log(this.articleD.user_id);
+
+          if(value == this.articleD.user_id)
           {
-               console.log("utilisateur");
+        this.activatedRoute.params.subscribe((params) => {
+        this.id2 = params['id2'];
+        this.utilisateur = this.id2 == "false";
+        console.log(this.utilisateur);});
           }
 
           else
           {
-               console.log("non utilisateur");
+            this.activatedRoute.params.subscribe((params) => {
+              this.id2 = params['id2'];
+              this.utilisateur =true;
+              console.log(this.utilisateur);
+                     });
           }
         
         });
@@ -76,10 +92,9 @@ export class DetailsPage implements OnInit {
     });
 
   }
-
   else
-
   {
+    console.log('ok')
     this.activatedRoute.params.subscribe((params) => {
       this.id = params['id'];
       this.myFlag = this.id == "null";
@@ -145,4 +160,52 @@ export class DetailsPage implements OnInit {
     })
     
   }
+
+ async supprimerarticle(id: string){
+
+  const alert = await this.alertCtrl.create({
+    header: 'Voulez vous vraiment supprimer cet article?',
+    buttons: [
+      {
+        text: 'Annuler',
+        role: 'cancel'
+      }, {
+        text: 'Retirer',
+        handler: res => {
+          console.log('ok');
+          this.firestore.doc('articles/' +id).delete()
+          this.router.navigateByUrl('tabs/acceuil')
+            .then((data) => {
+              this.toast.create({
+                message: "supprime",
+                duration: 2000,
+                position: 'top'
+              });
+              this.router.navigateByUrl('tabs/acceuil')
+            })
+            .catch((err) => {
+              console.log("erreur", err);
+            });
+        },
+      },
+    ]
+  });
+
+  await alert.present();
+}
+
+doRefresh(event){
+
+  window.location.reload();
+ }
+
+ async presentModal() {
+  const modal = await this.modalController.create({
+    component: ConnectPagePage,
+    breakpoints: [0, 0.3, 0.5, 0.8],
+    initialBreakpoint: 0.5
+  });
+  await modal.present();
+}
+
 }

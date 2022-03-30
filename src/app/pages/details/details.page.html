@@ -9,6 +9,15 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refresh...">
+    </ion-refresher-content>
+  </ion-refresher>  
 <!--Details du produit-->
 
 <ion-card>
@@ -33,9 +42,33 @@
       <h1>Description</h1>
       <br>
       <p>{{articleD.description}}</p>
-      <br><br>
-      <app-button (click)="ajouterArticleAuPanier(articleD)">Ajouter au panier</app-button>
+      <br>
+
+
+<div *ngIf="myFlag != null;else elseCondition">
+
+      <div *ngIf="!utilisateur;else elseCondition">
+
+      <app-button (click)="modifierarticle(articleD.id)">Modifier</app-button>
+      <app-button (click)="supprimerarticle(articleD.id)">Supprimer</app-button>
+      </div>
+
+      <ng-template #elseCondition>
+        <app-button (click)="ajouterArticleAuPanier(articleD)"> <ion-icon slot="icon-only"  name="cart-sharp"></ion-icon>Ajouter au panier</app-button>
+      </ng-template>     
+
+ </div>
+
+ <ng-template #elseCondition>
+  <app-button (click)="presentModal()" > <ion-icon slot="icon-only"  name="cart-sharp"></ion-icon>Ajouter au panier</app-button>
+
+</ng-template>     
+
     </div>
+
  </ion-card-content>
 </ion-card>
+
 </ion-content>
+
+
