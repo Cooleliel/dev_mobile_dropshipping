@@ -110,7 +110,7 @@ export class CategorieChoisiePage implements OnInit {
   }
 
   redirigerVersPageDetails(idItemProduit:  String)  {
-    this.navCtrl.navigateForward('/details/'  + idItemProduit) ; 
+    this.navCtrl.navigateForward('/details/'  + idItemProduit) ;
   }
 
   messageAttente(message:  string) {

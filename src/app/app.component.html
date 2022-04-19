@@ -70,13 +70,19 @@
           </ion-item>
         </ion-menu-toggle>
         <ion-menu-toggle>
+          <ion-item [routerLink]="['produit']">
+            <ion-icon slot="start" name="bag-handle-outline"></ion-icon>
+            <ion-label>Produit</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
           <ion-item [routerLink]="['tabs/favoris']">
             <ion-icon slot="start" name="heart"></ion-icon>
             <ion-label>Favoris</ion-label>
           </ion-item>
         </ion-menu-toggle>
         <ion-menu-toggle>
-          <ion-item [routerLink]="['tabs/favoris']">
+          <ion-item [routerLink]="['message']">
             <ion-icon slot="start" name="mail"></ion-icon>
             <ion-label>Message</ion-label>
           </ion-item>
